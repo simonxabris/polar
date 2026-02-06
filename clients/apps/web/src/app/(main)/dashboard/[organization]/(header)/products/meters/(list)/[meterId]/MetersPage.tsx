@@ -14,6 +14,7 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@polar-sh/ui/components/ui/dropdown-menu'
 import { useRouter, useSearchParams } from 'next/navigation'
@@ -38,6 +39,14 @@ const ClientPage: React.FC<ClientPageProps> = ({ organization, meter }) => {
   const { toast } = useToast()
   const updateMeter = useUpdateMeter(meter.id)
 
+  const handleCopyMeterId = useCallback(async () => {
+    await navigator.clipboard.writeText(meter.id)
+    toast({
+      title: 'Copied To Clipboard',
+      description: 'Meter ID was copied to clipboard',
+    })
+  }, [meter.id, toast])
+
   const handleArchiveMeter = useCallback(async () => {
     const isArchiving = !meter.archived_at
     const { error } = await updateMeter.mutateAsync({
@@ -51,9 +60,8 @@ const ClientPage: React.FC<ClientPageProps> = ({ organization, meter }) => {
 
     toast({
       title: `Meter ${isArchiving ? 'archived' : 'unarchived'}`,
-      description: `${meter.name} has been ${
-        isArchiving ? 'archived' : 'unarchived'
-      } successfully.`,
+      description: `${meter.name} has been ${isArchiving ? 'archived' : 'unarchived'
+        } successfully.`,
     })
 
     if (isArchiving) {
@@ -126,6 +134,10 @@ const ClientPage: React.FC<ClientPageProps> = ({ organization, meter }) => {
                 align="end"
                 className="dark:bg-polar-800 bg-gray-50 shadow-lg"
               >
+                <DropdownMenuItem onClick={handleCopyMeterId}>
+                  Copy Meter Id
+                </DropdownMenuItem>
+                <DropdownMenuSeparator />
                 <DropdownMenuItem
                   destructive={!meter.archived_at}
                   onClick={handleArchiveMeter}
