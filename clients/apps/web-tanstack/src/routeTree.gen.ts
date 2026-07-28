@@ -11,6 +11,37 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as LandingRouteImport } from './routes/_landing'
 import { Route as LandingIndexRouteImport } from './routes/_landing/index'
+import { Route as LandingBlogRouteImport } from './routes/_landing/blog'
+import { Route as LandingCompanyRouteImport } from './routes/_landing/company'
+import { Route as LandingDownloadsRouteImport } from './routes/_landing/downloads'
+import { Route as LandingLegalRouteImport } from './routes/_landing/legal'
+import { Route as LandingStartupProgramRouteImport } from './routes/_landing/startup-program'
+import { Route as ApiStartupProgramRouteImport } from './routes/api/startup-program'
+import { Route as LandingCustomersStillaAiRouteImport } from './routes/_landing/customers/stilla-ai'
+import { Route as LandingFeaturesCostInsightsRouteImport } from './routes/_landing/features/cost-insights'
+import { Route as LandingFeaturesCreditsRouteImport } from './routes/_landing/features/credits'
+import { Route as LandingFeaturesDiscountsRouteImport } from './routes/_landing/features/discounts'
+import { Route as LandingFeaturesFinanceRouteImport } from './routes/_landing/features/finance'
+import { Route as LandingFeaturesMerchantOfRecordRouteImport } from './routes/_landing/features/merchant-of-record'
+import { Route as LandingFeaturesSeatsRouteImport } from './routes/_landing/features/seats'
+import { Route as LandingFeaturesSubscriptionsRouteImport } from './routes/_landing/features/subscriptions'
+import { Route as LandingFeaturesTrialsRouteImport } from './routes/_landing/features/trials'
+import { Route as LandingFeaturesUsageBillingRouteImport } from './routes/_landing/features/usage-billing'
+import { Route as LandingLegalIndexRouteImport } from './routes/_landing/legal/index'
+import { Route as LandingLegalAcceptableUsePolicyRouteImport } from './routes/_landing/legal/acceptable-use-policy'
+import { Route as LandingLegalCheckoutBuyerTermsRouteImport } from './routes/_landing/legal/checkout-buyer-terms'
+import { Route as LandingLegalDataProcessingAddendumRouteImport } from './routes/_landing/legal/data-processing-addendum'
+import { Route as LandingLegalMasterServicesTermsRouteImport } from './routes/_landing/legal/master-services-terms'
+import { Route as LandingLegalPaymentProcessorPartnersRouteImport } from './routes/_landing/legal/payment-processor-partners'
+import { Route as LandingLegalPrivacyPolicyRouteImport } from './routes/_landing/legal/privacy-policy'
+import { Route as LandingLegalSubProcessorsRouteImport } from './routes/_landing/legal/sub-processors'
+import { Route as LandingResourcesIndexRouteImport } from './routes/_landing/resources/index'
+import { Route as LandingResourcesMerchantOfRecordRouteImport } from './routes/_landing/resources/merchant-of-record'
+import { Route as LandingResourcesPricingRouteImport } from './routes/_landing/resources/pricing'
+import { Route as LandingResourcesWhyRouteImport } from './routes/_landing/resources/why'
+import { Route as LandingResourcesComparisonLemonSqueezyRouteImport } from './routes/_landing/resources/comparison/lemon-squeezy'
+import { Route as LandingResourcesComparisonPaddleRouteImport } from './routes/_landing/resources/comparison/paddle'
+import { Route as LandingResourcesComparisonStripeRouteImport } from './routes/_landing/resources/comparison/stripe'
 
 const LandingRoute = LandingRouteImport.update({
   id: '/_landing',
@@ -21,28 +52,390 @@ const LandingIndexRoute = LandingIndexRouteImport.update({
   path: '/',
   getParentRoute: () => LandingRoute,
 } as any)
+const LandingBlogRoute = LandingBlogRouteImport.update({
+  id: '/blog',
+  path: '/blog',
+  getParentRoute: () => LandingRoute,
+} as any)
+const LandingCompanyRoute = LandingCompanyRouteImport.update({
+  id: '/company',
+  path: '/company',
+  getParentRoute: () => LandingRoute,
+} as any)
+const LandingDownloadsRoute = LandingDownloadsRouteImport.update({
+  id: '/downloads',
+  path: '/downloads',
+  getParentRoute: () => LandingRoute,
+} as any)
+const LandingLegalRoute = LandingLegalRouteImport.update({
+  id: '/legal',
+  path: '/legal',
+  getParentRoute: () => LandingRoute,
+} as any)
+const LandingStartupProgramRoute = LandingStartupProgramRouteImport.update({
+  id: '/startup-program',
+  path: '/startup-program',
+  getParentRoute: () => LandingRoute,
+} as any)
+const ApiStartupProgramRoute = ApiStartupProgramRouteImport.update({
+  id: '/api/startup-program',
+  path: '/api/startup-program',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LandingCustomersStillaAiRoute =
+  LandingCustomersStillaAiRouteImport.update({
+    id: '/customers/stilla-ai',
+    path: '/customers/stilla-ai',
+    getParentRoute: () => LandingRoute,
+  } as any)
+const LandingFeaturesCostInsightsRoute =
+  LandingFeaturesCostInsightsRouteImport.update({
+    id: '/features/cost-insights',
+    path: '/features/cost-insights',
+    getParentRoute: () => LandingRoute,
+  } as any)
+const LandingFeaturesCreditsRoute = LandingFeaturesCreditsRouteImport.update({
+  id: '/features/credits',
+  path: '/features/credits',
+  getParentRoute: () => LandingRoute,
+} as any)
+const LandingFeaturesDiscountsRoute =
+  LandingFeaturesDiscountsRouteImport.update({
+    id: '/features/discounts',
+    path: '/features/discounts',
+    getParentRoute: () => LandingRoute,
+  } as any)
+const LandingFeaturesFinanceRoute = LandingFeaturesFinanceRouteImport.update({
+  id: '/features/finance',
+  path: '/features/finance',
+  getParentRoute: () => LandingRoute,
+} as any)
+const LandingFeaturesMerchantOfRecordRoute =
+  LandingFeaturesMerchantOfRecordRouteImport.update({
+    id: '/features/merchant-of-record',
+    path: '/features/merchant-of-record',
+    getParentRoute: () => LandingRoute,
+  } as any)
+const LandingFeaturesSeatsRoute = LandingFeaturesSeatsRouteImport.update({
+  id: '/features/seats',
+  path: '/features/seats',
+  getParentRoute: () => LandingRoute,
+} as any)
+const LandingFeaturesSubscriptionsRoute =
+  LandingFeaturesSubscriptionsRouteImport.update({
+    id: '/features/subscriptions',
+    path: '/features/subscriptions',
+    getParentRoute: () => LandingRoute,
+  } as any)
+const LandingFeaturesTrialsRoute = LandingFeaturesTrialsRouteImport.update({
+  id: '/features/trials',
+  path: '/features/trials',
+  getParentRoute: () => LandingRoute,
+} as any)
+const LandingFeaturesUsageBillingRoute =
+  LandingFeaturesUsageBillingRouteImport.update({
+    id: '/features/usage-billing',
+    path: '/features/usage-billing',
+    getParentRoute: () => LandingRoute,
+  } as any)
+const LandingLegalIndexRoute = LandingLegalIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => LandingLegalRoute,
+} as any)
+const LandingLegalAcceptableUsePolicyRoute =
+  LandingLegalAcceptableUsePolicyRouteImport.update({
+    id: '/acceptable-use-policy',
+    path: '/acceptable-use-policy',
+    getParentRoute: () => LandingLegalRoute,
+  } as any)
+const LandingLegalCheckoutBuyerTermsRoute =
+  LandingLegalCheckoutBuyerTermsRouteImport.update({
+    id: '/checkout-buyer-terms',
+    path: '/checkout-buyer-terms',
+    getParentRoute: () => LandingLegalRoute,
+  } as any)
+const LandingLegalDataProcessingAddendumRoute =
+  LandingLegalDataProcessingAddendumRouteImport.update({
+    id: '/data-processing-addendum',
+    path: '/data-processing-addendum',
+    getParentRoute: () => LandingLegalRoute,
+  } as any)
+const LandingLegalMasterServicesTermsRoute =
+  LandingLegalMasterServicesTermsRouteImport.update({
+    id: '/master-services-terms',
+    path: '/master-services-terms',
+    getParentRoute: () => LandingLegalRoute,
+  } as any)
+const LandingLegalPaymentProcessorPartnersRoute =
+  LandingLegalPaymentProcessorPartnersRouteImport.update({
+    id: '/payment-processor-partners',
+    path: '/payment-processor-partners',
+    getParentRoute: () => LandingLegalRoute,
+  } as any)
+const LandingLegalPrivacyPolicyRoute =
+  LandingLegalPrivacyPolicyRouteImport.update({
+    id: '/privacy-policy',
+    path: '/privacy-policy',
+    getParentRoute: () => LandingLegalRoute,
+  } as any)
+const LandingLegalSubProcessorsRoute =
+  LandingLegalSubProcessorsRouteImport.update({
+    id: '/sub-processors',
+    path: '/sub-processors',
+    getParentRoute: () => LandingLegalRoute,
+  } as any)
+const LandingResourcesIndexRoute = LandingResourcesIndexRouteImport.update({
+  id: '/resources/',
+  path: '/resources/',
+  getParentRoute: () => LandingRoute,
+} as any)
+const LandingResourcesMerchantOfRecordRoute =
+  LandingResourcesMerchantOfRecordRouteImport.update({
+    id: '/resources/merchant-of-record',
+    path: '/resources/merchant-of-record',
+    getParentRoute: () => LandingRoute,
+  } as any)
+const LandingResourcesPricingRoute = LandingResourcesPricingRouteImport.update({
+  id: '/resources/pricing',
+  path: '/resources/pricing',
+  getParentRoute: () => LandingRoute,
+} as any)
+const LandingResourcesWhyRoute = LandingResourcesWhyRouteImport.update({
+  id: '/resources/why',
+  path: '/resources/why',
+  getParentRoute: () => LandingRoute,
+} as any)
+const LandingResourcesComparisonLemonSqueezyRoute =
+  LandingResourcesComparisonLemonSqueezyRouteImport.update({
+    id: '/resources/comparison/lemon-squeezy',
+    path: '/resources/comparison/lemon-squeezy',
+    getParentRoute: () => LandingRoute,
+  } as any)
+const LandingResourcesComparisonPaddleRoute =
+  LandingResourcesComparisonPaddleRouteImport.update({
+    id: '/resources/comparison/paddle',
+    path: '/resources/comparison/paddle',
+    getParentRoute: () => LandingRoute,
+  } as any)
+const LandingResourcesComparisonStripeRoute =
+  LandingResourcesComparisonStripeRouteImport.update({
+    id: '/resources/comparison/stripe',
+    path: '/resources/comparison/stripe',
+    getParentRoute: () => LandingRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof LandingIndexRoute
+  '/blog': typeof LandingBlogRoute
+  '/company': typeof LandingCompanyRoute
+  '/downloads': typeof LandingDownloadsRoute
+  '/legal': typeof LandingLegalRouteWithChildren
+  '/startup-program': typeof LandingStartupProgramRoute
+  '/api/startup-program': typeof ApiStartupProgramRoute
+  '/customers/stilla-ai': typeof LandingCustomersStillaAiRoute
+  '/features/cost-insights': typeof LandingFeaturesCostInsightsRoute
+  '/features/credits': typeof LandingFeaturesCreditsRoute
+  '/features/discounts': typeof LandingFeaturesDiscountsRoute
+  '/features/finance': typeof LandingFeaturesFinanceRoute
+  '/features/merchant-of-record': typeof LandingFeaturesMerchantOfRecordRoute
+  '/features/seats': typeof LandingFeaturesSeatsRoute
+  '/features/subscriptions': typeof LandingFeaturesSubscriptionsRoute
+  '/features/trials': typeof LandingFeaturesTrialsRoute
+  '/features/usage-billing': typeof LandingFeaturesUsageBillingRoute
+  '/legal/acceptable-use-policy': typeof LandingLegalAcceptableUsePolicyRoute
+  '/legal/checkout-buyer-terms': typeof LandingLegalCheckoutBuyerTermsRoute
+  '/legal/data-processing-addendum': typeof LandingLegalDataProcessingAddendumRoute
+  '/legal/master-services-terms': typeof LandingLegalMasterServicesTermsRoute
+  '/legal/payment-processor-partners': typeof LandingLegalPaymentProcessorPartnersRoute
+  '/legal/privacy-policy': typeof LandingLegalPrivacyPolicyRoute
+  '/legal/sub-processors': typeof LandingLegalSubProcessorsRoute
+  '/resources/merchant-of-record': typeof LandingResourcesMerchantOfRecordRoute
+  '/resources/pricing': typeof LandingResourcesPricingRoute
+  '/resources/why': typeof LandingResourcesWhyRoute
+  '/legal/': typeof LandingLegalIndexRoute
+  '/resources/': typeof LandingResourcesIndexRoute
+  '/resources/comparison/lemon-squeezy': typeof LandingResourcesComparisonLemonSqueezyRoute
+  '/resources/comparison/paddle': typeof LandingResourcesComparisonPaddleRoute
+  '/resources/comparison/stripe': typeof LandingResourcesComparisonStripeRoute
 }
 export interface FileRoutesByTo {
+  '/blog': typeof LandingBlogRoute
+  '/company': typeof LandingCompanyRoute
+  '/downloads': typeof LandingDownloadsRoute
+  '/startup-program': typeof LandingStartupProgramRoute
+  '/api/startup-program': typeof ApiStartupProgramRoute
   '/': typeof LandingIndexRoute
+  '/customers/stilla-ai': typeof LandingCustomersStillaAiRoute
+  '/features/cost-insights': typeof LandingFeaturesCostInsightsRoute
+  '/features/credits': typeof LandingFeaturesCreditsRoute
+  '/features/discounts': typeof LandingFeaturesDiscountsRoute
+  '/features/finance': typeof LandingFeaturesFinanceRoute
+  '/features/merchant-of-record': typeof LandingFeaturesMerchantOfRecordRoute
+  '/features/seats': typeof LandingFeaturesSeatsRoute
+  '/features/subscriptions': typeof LandingFeaturesSubscriptionsRoute
+  '/features/trials': typeof LandingFeaturesTrialsRoute
+  '/features/usage-billing': typeof LandingFeaturesUsageBillingRoute
+  '/legal/acceptable-use-policy': typeof LandingLegalAcceptableUsePolicyRoute
+  '/legal/checkout-buyer-terms': typeof LandingLegalCheckoutBuyerTermsRoute
+  '/legal/data-processing-addendum': typeof LandingLegalDataProcessingAddendumRoute
+  '/legal/master-services-terms': typeof LandingLegalMasterServicesTermsRoute
+  '/legal/payment-processor-partners': typeof LandingLegalPaymentProcessorPartnersRoute
+  '/legal/privacy-policy': typeof LandingLegalPrivacyPolicyRoute
+  '/legal/sub-processors': typeof LandingLegalSubProcessorsRoute
+  '/resources/merchant-of-record': typeof LandingResourcesMerchantOfRecordRoute
+  '/resources/pricing': typeof LandingResourcesPricingRoute
+  '/resources/why': typeof LandingResourcesWhyRoute
+  '/legal': typeof LandingLegalIndexRoute
+  '/resources': typeof LandingResourcesIndexRoute
+  '/resources/comparison/lemon-squeezy': typeof LandingResourcesComparisonLemonSqueezyRoute
+  '/resources/comparison/paddle': typeof LandingResourcesComparisonPaddleRoute
+  '/resources/comparison/stripe': typeof LandingResourcesComparisonStripeRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/_landing': typeof LandingRouteWithChildren
+  '/_landing/blog': typeof LandingBlogRoute
+  '/_landing/company': typeof LandingCompanyRoute
+  '/_landing/downloads': typeof LandingDownloadsRoute
+  '/_landing/legal': typeof LandingLegalRouteWithChildren
+  '/_landing/startup-program': typeof LandingStartupProgramRoute
+  '/api/startup-program': typeof ApiStartupProgramRoute
   '/_landing/': typeof LandingIndexRoute
+  '/_landing/customers/stilla-ai': typeof LandingCustomersStillaAiRoute
+  '/_landing/features/cost-insights': typeof LandingFeaturesCostInsightsRoute
+  '/_landing/features/credits': typeof LandingFeaturesCreditsRoute
+  '/_landing/features/discounts': typeof LandingFeaturesDiscountsRoute
+  '/_landing/features/finance': typeof LandingFeaturesFinanceRoute
+  '/_landing/features/merchant-of-record': typeof LandingFeaturesMerchantOfRecordRoute
+  '/_landing/features/seats': typeof LandingFeaturesSeatsRoute
+  '/_landing/features/subscriptions': typeof LandingFeaturesSubscriptionsRoute
+  '/_landing/features/trials': typeof LandingFeaturesTrialsRoute
+  '/_landing/features/usage-billing': typeof LandingFeaturesUsageBillingRoute
+  '/_landing/legal/acceptable-use-policy': typeof LandingLegalAcceptableUsePolicyRoute
+  '/_landing/legal/checkout-buyer-terms': typeof LandingLegalCheckoutBuyerTermsRoute
+  '/_landing/legal/data-processing-addendum': typeof LandingLegalDataProcessingAddendumRoute
+  '/_landing/legal/master-services-terms': typeof LandingLegalMasterServicesTermsRoute
+  '/_landing/legal/payment-processor-partners': typeof LandingLegalPaymentProcessorPartnersRoute
+  '/_landing/legal/privacy-policy': typeof LandingLegalPrivacyPolicyRoute
+  '/_landing/legal/sub-processors': typeof LandingLegalSubProcessorsRoute
+  '/_landing/resources/merchant-of-record': typeof LandingResourcesMerchantOfRecordRoute
+  '/_landing/resources/pricing': typeof LandingResourcesPricingRoute
+  '/_landing/resources/why': typeof LandingResourcesWhyRoute
+  '/_landing/legal/': typeof LandingLegalIndexRoute
+  '/_landing/resources/': typeof LandingResourcesIndexRoute
+  '/_landing/resources/comparison/lemon-squeezy': typeof LandingResourcesComparisonLemonSqueezyRoute
+  '/_landing/resources/comparison/paddle': typeof LandingResourcesComparisonPaddleRoute
+  '/_landing/resources/comparison/stripe': typeof LandingResourcesComparisonStripeRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/blog'
+    | '/company'
+    | '/downloads'
+    | '/legal'
+    | '/startup-program'
+    | '/api/startup-program'
+    | '/customers/stilla-ai'
+    | '/features/cost-insights'
+    | '/features/credits'
+    | '/features/discounts'
+    | '/features/finance'
+    | '/features/merchant-of-record'
+    | '/features/seats'
+    | '/features/subscriptions'
+    | '/features/trials'
+    | '/features/usage-billing'
+    | '/legal/acceptable-use-policy'
+    | '/legal/checkout-buyer-terms'
+    | '/legal/data-processing-addendum'
+    | '/legal/master-services-terms'
+    | '/legal/payment-processor-partners'
+    | '/legal/privacy-policy'
+    | '/legal/sub-processors'
+    | '/resources/merchant-of-record'
+    | '/resources/pricing'
+    | '/resources/why'
+    | '/legal/'
+    | '/resources/'
+    | '/resources/comparison/lemon-squeezy'
+    | '/resources/comparison/paddle'
+    | '/resources/comparison/stripe'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/_landing' | '/_landing/'
+  to:
+    | '/blog'
+    | '/company'
+    | '/downloads'
+    | '/startup-program'
+    | '/api/startup-program'
+    | '/'
+    | '/customers/stilla-ai'
+    | '/features/cost-insights'
+    | '/features/credits'
+    | '/features/discounts'
+    | '/features/finance'
+    | '/features/merchant-of-record'
+    | '/features/seats'
+    | '/features/subscriptions'
+    | '/features/trials'
+    | '/features/usage-billing'
+    | '/legal/acceptable-use-policy'
+    | '/legal/checkout-buyer-terms'
+    | '/legal/data-processing-addendum'
+    | '/legal/master-services-terms'
+    | '/legal/payment-processor-partners'
+    | '/legal/privacy-policy'
+    | '/legal/sub-processors'
+    | '/resources/merchant-of-record'
+    | '/resources/pricing'
+    | '/resources/why'
+    | '/legal'
+    | '/resources'
+    | '/resources/comparison/lemon-squeezy'
+    | '/resources/comparison/paddle'
+    | '/resources/comparison/stripe'
+  id:
+    | '__root__'
+    | '/_landing'
+    | '/_landing/blog'
+    | '/_landing/company'
+    | '/_landing/downloads'
+    | '/_landing/legal'
+    | '/_landing/startup-program'
+    | '/api/startup-program'
+    | '/_landing/'
+    | '/_landing/customers/stilla-ai'
+    | '/_landing/features/cost-insights'
+    | '/_landing/features/credits'
+    | '/_landing/features/discounts'
+    | '/_landing/features/finance'
+    | '/_landing/features/merchant-of-record'
+    | '/_landing/features/seats'
+    | '/_landing/features/subscriptions'
+    | '/_landing/features/trials'
+    | '/_landing/features/usage-billing'
+    | '/_landing/legal/acceptable-use-policy'
+    | '/_landing/legal/checkout-buyer-terms'
+    | '/_landing/legal/data-processing-addendum'
+    | '/_landing/legal/master-services-terms'
+    | '/_landing/legal/payment-processor-partners'
+    | '/_landing/legal/privacy-policy'
+    | '/_landing/legal/sub-processors'
+    | '/_landing/resources/merchant-of-record'
+    | '/_landing/resources/pricing'
+    | '/_landing/resources/why'
+    | '/_landing/legal/'
+    | '/_landing/resources/'
+    | '/_landing/resources/comparison/lemon-squeezy'
+    | '/_landing/resources/comparison/paddle'
+    | '/_landing/resources/comparison/stripe'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   LandingRoute: typeof LandingRouteWithChildren
+  ApiStartupProgramRoute: typeof ApiStartupProgramRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -61,15 +454,305 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LandingIndexRouteImport
       parentRoute: typeof LandingRoute
     }
+    '/_landing/blog': {
+      id: '/_landing/blog'
+      path: '/blog'
+      fullPath: '/blog'
+      preLoaderRoute: typeof LandingBlogRouteImport
+      parentRoute: typeof LandingRoute
+    }
+    '/_landing/company': {
+      id: '/_landing/company'
+      path: '/company'
+      fullPath: '/company'
+      preLoaderRoute: typeof LandingCompanyRouteImport
+      parentRoute: typeof LandingRoute
+    }
+    '/_landing/downloads': {
+      id: '/_landing/downloads'
+      path: '/downloads'
+      fullPath: '/downloads'
+      preLoaderRoute: typeof LandingDownloadsRouteImport
+      parentRoute: typeof LandingRoute
+    }
+    '/_landing/legal': {
+      id: '/_landing/legal'
+      path: '/legal'
+      fullPath: '/legal'
+      preLoaderRoute: typeof LandingLegalRouteImport
+      parentRoute: typeof LandingRoute
+    }
+    '/_landing/startup-program': {
+      id: '/_landing/startup-program'
+      path: '/startup-program'
+      fullPath: '/startup-program'
+      preLoaderRoute: typeof LandingStartupProgramRouteImport
+      parentRoute: typeof LandingRoute
+    }
+    '/api/startup-program': {
+      id: '/api/startup-program'
+      path: '/api/startup-program'
+      fullPath: '/api/startup-program'
+      preLoaderRoute: typeof ApiStartupProgramRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_landing/customers/stilla-ai': {
+      id: '/_landing/customers/stilla-ai'
+      path: '/customers/stilla-ai'
+      fullPath: '/customers/stilla-ai'
+      preLoaderRoute: typeof LandingCustomersStillaAiRouteImport
+      parentRoute: typeof LandingRoute
+    }
+    '/_landing/features/cost-insights': {
+      id: '/_landing/features/cost-insights'
+      path: '/features/cost-insights'
+      fullPath: '/features/cost-insights'
+      preLoaderRoute: typeof LandingFeaturesCostInsightsRouteImport
+      parentRoute: typeof LandingRoute
+    }
+    '/_landing/features/credits': {
+      id: '/_landing/features/credits'
+      path: '/features/credits'
+      fullPath: '/features/credits'
+      preLoaderRoute: typeof LandingFeaturesCreditsRouteImport
+      parentRoute: typeof LandingRoute
+    }
+    '/_landing/features/discounts': {
+      id: '/_landing/features/discounts'
+      path: '/features/discounts'
+      fullPath: '/features/discounts'
+      preLoaderRoute: typeof LandingFeaturesDiscountsRouteImport
+      parentRoute: typeof LandingRoute
+    }
+    '/_landing/features/finance': {
+      id: '/_landing/features/finance'
+      path: '/features/finance'
+      fullPath: '/features/finance'
+      preLoaderRoute: typeof LandingFeaturesFinanceRouteImport
+      parentRoute: typeof LandingRoute
+    }
+    '/_landing/features/merchant-of-record': {
+      id: '/_landing/features/merchant-of-record'
+      path: '/features/merchant-of-record'
+      fullPath: '/features/merchant-of-record'
+      preLoaderRoute: typeof LandingFeaturesMerchantOfRecordRouteImport
+      parentRoute: typeof LandingRoute
+    }
+    '/_landing/features/seats': {
+      id: '/_landing/features/seats'
+      path: '/features/seats'
+      fullPath: '/features/seats'
+      preLoaderRoute: typeof LandingFeaturesSeatsRouteImport
+      parentRoute: typeof LandingRoute
+    }
+    '/_landing/features/subscriptions': {
+      id: '/_landing/features/subscriptions'
+      path: '/features/subscriptions'
+      fullPath: '/features/subscriptions'
+      preLoaderRoute: typeof LandingFeaturesSubscriptionsRouteImport
+      parentRoute: typeof LandingRoute
+    }
+    '/_landing/features/trials': {
+      id: '/_landing/features/trials'
+      path: '/features/trials'
+      fullPath: '/features/trials'
+      preLoaderRoute: typeof LandingFeaturesTrialsRouteImport
+      parentRoute: typeof LandingRoute
+    }
+    '/_landing/features/usage-billing': {
+      id: '/_landing/features/usage-billing'
+      path: '/features/usage-billing'
+      fullPath: '/features/usage-billing'
+      preLoaderRoute: typeof LandingFeaturesUsageBillingRouteImport
+      parentRoute: typeof LandingRoute
+    }
+    '/_landing/legal/': {
+      id: '/_landing/legal/'
+      path: '/'
+      fullPath: '/legal/'
+      preLoaderRoute: typeof LandingLegalIndexRouteImport
+      parentRoute: typeof LandingLegalRoute
+    }
+    '/_landing/legal/acceptable-use-policy': {
+      id: '/_landing/legal/acceptable-use-policy'
+      path: '/acceptable-use-policy'
+      fullPath: '/legal/acceptable-use-policy'
+      preLoaderRoute: typeof LandingLegalAcceptableUsePolicyRouteImport
+      parentRoute: typeof LandingLegalRoute
+    }
+    '/_landing/legal/checkout-buyer-terms': {
+      id: '/_landing/legal/checkout-buyer-terms'
+      path: '/checkout-buyer-terms'
+      fullPath: '/legal/checkout-buyer-terms'
+      preLoaderRoute: typeof LandingLegalCheckoutBuyerTermsRouteImport
+      parentRoute: typeof LandingLegalRoute
+    }
+    '/_landing/legal/data-processing-addendum': {
+      id: '/_landing/legal/data-processing-addendum'
+      path: '/data-processing-addendum'
+      fullPath: '/legal/data-processing-addendum'
+      preLoaderRoute: typeof LandingLegalDataProcessingAddendumRouteImport
+      parentRoute: typeof LandingLegalRoute
+    }
+    '/_landing/legal/master-services-terms': {
+      id: '/_landing/legal/master-services-terms'
+      path: '/master-services-terms'
+      fullPath: '/legal/master-services-terms'
+      preLoaderRoute: typeof LandingLegalMasterServicesTermsRouteImport
+      parentRoute: typeof LandingLegalRoute
+    }
+    '/_landing/legal/payment-processor-partners': {
+      id: '/_landing/legal/payment-processor-partners'
+      path: '/payment-processor-partners'
+      fullPath: '/legal/payment-processor-partners'
+      preLoaderRoute: typeof LandingLegalPaymentProcessorPartnersRouteImport
+      parentRoute: typeof LandingLegalRoute
+    }
+    '/_landing/legal/privacy-policy': {
+      id: '/_landing/legal/privacy-policy'
+      path: '/privacy-policy'
+      fullPath: '/legal/privacy-policy'
+      preLoaderRoute: typeof LandingLegalPrivacyPolicyRouteImport
+      parentRoute: typeof LandingLegalRoute
+    }
+    '/_landing/legal/sub-processors': {
+      id: '/_landing/legal/sub-processors'
+      path: '/sub-processors'
+      fullPath: '/legal/sub-processors'
+      preLoaderRoute: typeof LandingLegalSubProcessorsRouteImport
+      parentRoute: typeof LandingLegalRoute
+    }
+    '/_landing/resources/': {
+      id: '/_landing/resources/'
+      path: '/resources'
+      fullPath: '/resources/'
+      preLoaderRoute: typeof LandingResourcesIndexRouteImport
+      parentRoute: typeof LandingRoute
+    }
+    '/_landing/resources/merchant-of-record': {
+      id: '/_landing/resources/merchant-of-record'
+      path: '/resources/merchant-of-record'
+      fullPath: '/resources/merchant-of-record'
+      preLoaderRoute: typeof LandingResourcesMerchantOfRecordRouteImport
+      parentRoute: typeof LandingRoute
+    }
+    '/_landing/resources/pricing': {
+      id: '/_landing/resources/pricing'
+      path: '/resources/pricing'
+      fullPath: '/resources/pricing'
+      preLoaderRoute: typeof LandingResourcesPricingRouteImport
+      parentRoute: typeof LandingRoute
+    }
+    '/_landing/resources/why': {
+      id: '/_landing/resources/why'
+      path: '/resources/why'
+      fullPath: '/resources/why'
+      preLoaderRoute: typeof LandingResourcesWhyRouteImport
+      parentRoute: typeof LandingRoute
+    }
+    '/_landing/resources/comparison/lemon-squeezy': {
+      id: '/_landing/resources/comparison/lemon-squeezy'
+      path: '/resources/comparison/lemon-squeezy'
+      fullPath: '/resources/comparison/lemon-squeezy'
+      preLoaderRoute: typeof LandingResourcesComparisonLemonSqueezyRouteImport
+      parentRoute: typeof LandingRoute
+    }
+    '/_landing/resources/comparison/paddle': {
+      id: '/_landing/resources/comparison/paddle'
+      path: '/resources/comparison/paddle'
+      fullPath: '/resources/comparison/paddle'
+      preLoaderRoute: typeof LandingResourcesComparisonPaddleRouteImport
+      parentRoute: typeof LandingRoute
+    }
+    '/_landing/resources/comparison/stripe': {
+      id: '/_landing/resources/comparison/stripe'
+      path: '/resources/comparison/stripe'
+      fullPath: '/resources/comparison/stripe'
+      preLoaderRoute: typeof LandingResourcesComparisonStripeRouteImport
+      parentRoute: typeof LandingRoute
+    }
   }
 }
 
+interface LandingLegalRouteChildren {
+  LandingLegalAcceptableUsePolicyRoute: typeof LandingLegalAcceptableUsePolicyRoute
+  LandingLegalCheckoutBuyerTermsRoute: typeof LandingLegalCheckoutBuyerTermsRoute
+  LandingLegalDataProcessingAddendumRoute: typeof LandingLegalDataProcessingAddendumRoute
+  LandingLegalMasterServicesTermsRoute: typeof LandingLegalMasterServicesTermsRoute
+  LandingLegalPaymentProcessorPartnersRoute: typeof LandingLegalPaymentProcessorPartnersRoute
+  LandingLegalPrivacyPolicyRoute: typeof LandingLegalPrivacyPolicyRoute
+  LandingLegalSubProcessorsRoute: typeof LandingLegalSubProcessorsRoute
+  LandingLegalIndexRoute: typeof LandingLegalIndexRoute
+}
+
+const LandingLegalRouteChildren: LandingLegalRouteChildren = {
+  LandingLegalAcceptableUsePolicyRoute: LandingLegalAcceptableUsePolicyRoute,
+  LandingLegalCheckoutBuyerTermsRoute: LandingLegalCheckoutBuyerTermsRoute,
+  LandingLegalDataProcessingAddendumRoute:
+    LandingLegalDataProcessingAddendumRoute,
+  LandingLegalMasterServicesTermsRoute: LandingLegalMasterServicesTermsRoute,
+  LandingLegalPaymentProcessorPartnersRoute:
+    LandingLegalPaymentProcessorPartnersRoute,
+  LandingLegalPrivacyPolicyRoute: LandingLegalPrivacyPolicyRoute,
+  LandingLegalSubProcessorsRoute: LandingLegalSubProcessorsRoute,
+  LandingLegalIndexRoute: LandingLegalIndexRoute,
+}
+
+const LandingLegalRouteWithChildren = LandingLegalRoute._addFileChildren(
+  LandingLegalRouteChildren,
+)
+
 interface LandingRouteChildren {
+  LandingBlogRoute: typeof LandingBlogRoute
+  LandingCompanyRoute: typeof LandingCompanyRoute
+  LandingDownloadsRoute: typeof LandingDownloadsRoute
+  LandingLegalRoute: typeof LandingLegalRouteWithChildren
+  LandingStartupProgramRoute: typeof LandingStartupProgramRoute
   LandingIndexRoute: typeof LandingIndexRoute
+  LandingCustomersStillaAiRoute: typeof LandingCustomersStillaAiRoute
+  LandingFeaturesCostInsightsRoute: typeof LandingFeaturesCostInsightsRoute
+  LandingFeaturesCreditsRoute: typeof LandingFeaturesCreditsRoute
+  LandingFeaturesDiscountsRoute: typeof LandingFeaturesDiscountsRoute
+  LandingFeaturesFinanceRoute: typeof LandingFeaturesFinanceRoute
+  LandingFeaturesMerchantOfRecordRoute: typeof LandingFeaturesMerchantOfRecordRoute
+  LandingFeaturesSeatsRoute: typeof LandingFeaturesSeatsRoute
+  LandingFeaturesSubscriptionsRoute: typeof LandingFeaturesSubscriptionsRoute
+  LandingFeaturesTrialsRoute: typeof LandingFeaturesTrialsRoute
+  LandingFeaturesUsageBillingRoute: typeof LandingFeaturesUsageBillingRoute
+  LandingResourcesMerchantOfRecordRoute: typeof LandingResourcesMerchantOfRecordRoute
+  LandingResourcesPricingRoute: typeof LandingResourcesPricingRoute
+  LandingResourcesWhyRoute: typeof LandingResourcesWhyRoute
+  LandingResourcesIndexRoute: typeof LandingResourcesIndexRoute
+  LandingResourcesComparisonLemonSqueezyRoute: typeof LandingResourcesComparisonLemonSqueezyRoute
+  LandingResourcesComparisonPaddleRoute: typeof LandingResourcesComparisonPaddleRoute
+  LandingResourcesComparisonStripeRoute: typeof LandingResourcesComparisonStripeRoute
 }
 
 const LandingRouteChildren: LandingRouteChildren = {
+  LandingBlogRoute: LandingBlogRoute,
+  LandingCompanyRoute: LandingCompanyRoute,
+  LandingDownloadsRoute: LandingDownloadsRoute,
+  LandingLegalRoute: LandingLegalRouteWithChildren,
+  LandingStartupProgramRoute: LandingStartupProgramRoute,
   LandingIndexRoute: LandingIndexRoute,
+  LandingCustomersStillaAiRoute: LandingCustomersStillaAiRoute,
+  LandingFeaturesCostInsightsRoute: LandingFeaturesCostInsightsRoute,
+  LandingFeaturesCreditsRoute: LandingFeaturesCreditsRoute,
+  LandingFeaturesDiscountsRoute: LandingFeaturesDiscountsRoute,
+  LandingFeaturesFinanceRoute: LandingFeaturesFinanceRoute,
+  LandingFeaturesMerchantOfRecordRoute: LandingFeaturesMerchantOfRecordRoute,
+  LandingFeaturesSeatsRoute: LandingFeaturesSeatsRoute,
+  LandingFeaturesSubscriptionsRoute: LandingFeaturesSubscriptionsRoute,
+  LandingFeaturesTrialsRoute: LandingFeaturesTrialsRoute,
+  LandingFeaturesUsageBillingRoute: LandingFeaturesUsageBillingRoute,
+  LandingResourcesMerchantOfRecordRoute: LandingResourcesMerchantOfRecordRoute,
+  LandingResourcesPricingRoute: LandingResourcesPricingRoute,
+  LandingResourcesWhyRoute: LandingResourcesWhyRoute,
+  LandingResourcesIndexRoute: LandingResourcesIndexRoute,
+  LandingResourcesComparisonLemonSqueezyRoute:
+    LandingResourcesComparisonLemonSqueezyRoute,
+  LandingResourcesComparisonPaddleRoute: LandingResourcesComparisonPaddleRoute,
+  LandingResourcesComparisonStripeRoute: LandingResourcesComparisonStripeRoute,
 }
 
 const LandingRouteWithChildren =
@@ -77,6 +760,7 @@ const LandingRouteWithChildren =
 
 const rootRouteChildren: RootRouteChildren = {
   LandingRoute: LandingRouteWithChildren,
+  ApiStartupProgramRoute: ApiStartupProgramRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

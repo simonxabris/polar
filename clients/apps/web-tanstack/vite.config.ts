@@ -1,12 +1,14 @@
-import { defineConfig } from 'vite'
-import { devtools } from '@tanstack/devtools-vite'
-
-import { tanstackStart } from '@tanstack/react-start/plugin/vite'
-
-import viteReact from '@vitejs/plugin-react'
-import tailwindcss from '@tailwindcss/vite'
-import { nitro } from 'nitro/vite'
+import mdx from '@mdx-js/rollup'
 import stylex from '@stylexjs/unplugin'
+import { devtools } from '@tanstack/devtools-vite'
+import { tanstackStart } from '@tanstack/react-start/plugin/vite'
+import tailwindcss from '@tailwindcss/vite'
+import viteReact from '@vitejs/plugin-react'
+import { nitro } from 'nitro/vite'
+import rehypeSlug from 'rehype-slug'
+import remarkFrontmatter from 'remark-frontmatter'
+import remarkGfm from 'remark-gfm'
+import { defineConfig } from 'vite'
 
 const config = defineConfig({
   resolve: { tsconfigPaths: true, dedupe: ['react', 'react-dom'] },
@@ -22,8 +24,15 @@ const config = defineConfig({
       devPersistToDisk: true,
     }),
     tailwindcss(),
+    {
+      enforce: 'pre',
+      ...mdx({
+        remarkPlugins: [remarkFrontmatter, remarkGfm],
+        rehypePlugins: [rehypeSlug],
+      }),
+    },
     tanstackStart(),
-    viteReact(),
+    viteReact({ include: /\.(js|jsx|mdx|ts|tsx)$/ }),
   ],
 })
 

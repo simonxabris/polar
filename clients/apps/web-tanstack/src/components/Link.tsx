@@ -1,8 +1,10 @@
 import { Link as TanStackLink } from '@tanstack/react-router'
 import { forwardRef, type AnchorHTMLAttributes } from 'react'
 
-export interface LinkProps
-  extends Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'href'> {
+export interface LinkProps extends Omit<
+  AnchorHTMLAttributes<HTMLAnchorElement>,
+  'href'
+> {
   href: string
   prefetch?: boolean
 }
@@ -11,7 +13,38 @@ export interface LinkProps
  * Routes that have been migrated to this app. Links pointing anywhere else
  * render plain anchors (full-page navigation) until their route is migrated.
  */
-const MIGRATED_ROUTES = new Set(['/'])
+const MIGRATED_ROUTES = new Set([
+  '/',
+  '/blog',
+  '/company',
+  '/customers/stilla-ai',
+  '/downloads',
+  '/features/cost-insights',
+  '/features/credits',
+  '/features/discounts',
+  '/features/finance',
+  '/features/merchant-of-record',
+  '/features/seats',
+  '/features/subscriptions',
+  '/features/trials',
+  '/features/usage-billing',
+  '/legal',
+  '/legal/acceptable-use-policy',
+  '/legal/checkout-buyer-terms',
+  '/legal/data-processing-addendum',
+  '/legal/master-services-terms',
+  '/legal/payment-processor-partners',
+  '/legal/privacy-policy',
+  '/legal/sub-processors',
+  '/resources',
+  '/resources/comparison/lemon-squeezy',
+  '/resources/comparison/paddle',
+  '/resources/comparison/stripe',
+  '/resources/merchant-of-record',
+  '/resources/pricing',
+  '/resources/why',
+  '/startup-program',
+])
 
 /**
  * Incremental-migration shim for next/link. Migrated internal routes render a

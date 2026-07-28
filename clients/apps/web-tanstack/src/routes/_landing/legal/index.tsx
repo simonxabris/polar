@@ -1,0 +1,82 @@
+import { BlogHero } from '@/components/Blog/BlogHero'
+import Link from '@/components/Link'
+import { getMarketingHead } from '@/utils/metadata'
+import ArrowOutwardOutlined from '@mui/icons-material/ArrowOutwardOutlined'
+import { createFileRoute } from '@tanstack/react-router'
+
+const resourceLinks = [
+  {
+    title: 'Master Services Terms',
+    description: 'Core contractual terms for using Polar as a platform.',
+    href: '/legal/master-services-terms',
+  },
+  {
+    title: 'Acceptable Use Policy',
+    description: 'Rules and restrictions for using Polar services.',
+    href: '/legal/acceptable-use-policy',
+  },
+  {
+    title: 'Checkout Buyer Terms',
+    description: 'Terms that apply to buyers purchasing through checkout.',
+    href: '/legal/checkout-buyer-terms',
+  },
+  {
+    title: 'Data Processing Addendum',
+    description: 'Data protection terms governing processing activities.',
+    href: '/legal/data-processing-addendum',
+  },
+  {
+    title: 'Sub-processors',
+    description:
+      'Third-party service providers and affiliates supporting the delivery and operation of the Polar platform.',
+    href: '/legal/sub-processors',
+  },
+  {
+    title: 'Payment Processor Partners',
+    description: 'Information about payment partners used by Polar.',
+    href: '/legal/payment-processor-partners',
+  },
+  {
+    title: 'Privacy Policy',
+    description: 'How Polar collects, uses, and protects personal data.',
+    href: '/legal/privacy-policy',
+  },
+]
+
+export const Route = createFileRoute('/_landing/legal/')({
+  head: () =>
+    getMarketingHead({
+      title: 'Legal',
+      description: 'Legal documents',
+      keywords:
+        'legal, privacy, tos, terms of service, merchant of record, saas, digital products, platform, developer, open source, funding, open source, economy',
+    }),
+  component: Legal,
+})
+
+function Legal() {
+  return (
+    <div className="not-prose mx-auto flex h-full min-h-screen w-full max-w-6xl flex-col gap-y-8 md:gap-y-16">
+      <BlogHero title="Legal" />
+      <div className="flex flex-col gap-y-8">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
+          {resourceLinks.map((link) => (
+            <Link
+              key={link.title + link.description}
+              className="dark:hover:bg-polar-900 dark:border-polar-700 flex w-full cursor-pointer flex-col gap-6 border border-gray-300 p-6 transition-colors duration-200 hover:bg-gray-100"
+              href={link.href}
+            >
+              <ArrowOutwardOutlined fontSize="inherit" />
+              <div className="flex flex-col gap-2">
+                <h3 className="font-mono text-xl">{link.title}</h3>
+                <p className="dark:text-polar-500 font-sm text-gray-500">
+                  {link.description}
+                </p>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}
