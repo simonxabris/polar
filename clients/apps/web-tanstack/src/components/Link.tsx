@@ -16,6 +16,11 @@ export interface LinkProps extends Omit<
 const MIGRATED_ROUTES = new Set([
   '/',
   '/blog',
+  '/blog/introducing-polar-plans',
+  '/blog/mitchell-hashimoto-joins-polar-as-an-advisor',
+  '/blog/orbit-llm-safe-design-system',
+  '/blog/polar-seed-announcement',
+  '/blog/prompt-a-startup-2026',
   '/company',
   '/customers/stilla-ai',
   '/downloads',

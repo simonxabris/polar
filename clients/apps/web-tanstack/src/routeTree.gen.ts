@@ -17,6 +17,12 @@ import { Route as LandingDownloadsRouteImport } from './routes/_landing/download
 import { Route as LandingLegalRouteImport } from './routes/_landing/legal'
 import { Route as LandingStartupProgramRouteImport } from './routes/_landing/startup-program'
 import { Route as ApiStartupProgramRouteImport } from './routes/api/startup-program'
+import { Route as LandingBlogIndexRouteImport } from './routes/_landing/blog/index'
+import { Route as LandingBlogIntroducingPolarPlansRouteImport } from './routes/_landing/blog/introducing-polar-plans'
+import { Route as LandingBlogMitchellHashimotoJoinsPolarAsAnAdvisorRouteImport } from './routes/_landing/blog/mitchell-hashimoto-joins-polar-as-an-advisor'
+import { Route as LandingBlogOrbitLlmSafeDesignSystemRouteImport } from './routes/_landing/blog/orbit-llm-safe-design-system'
+import { Route as LandingBlogPolarSeedAnnouncementRouteImport } from './routes/_landing/blog/polar-seed-announcement'
+import { Route as LandingBlogPromptAStartup2026RouteImport } from './routes/_landing/blog/prompt-a-startup-2026'
 import { Route as LandingCustomersStillaAiRouteImport } from './routes/_landing/customers/stilla-ai'
 import { Route as LandingFeaturesCostInsightsRouteImport } from './routes/_landing/features/cost-insights'
 import { Route as LandingFeaturesCreditsRouteImport } from './routes/_landing/features/credits'
@@ -82,6 +88,41 @@ const ApiStartupProgramRoute = ApiStartupProgramRouteImport.update({
   path: '/api/startup-program',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LandingBlogIndexRoute = LandingBlogIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => LandingBlogRoute,
+} as any)
+const LandingBlogIntroducingPolarPlansRoute =
+  LandingBlogIntroducingPolarPlansRouteImport.update({
+    id: '/introducing-polar-plans',
+    path: '/introducing-polar-plans',
+    getParentRoute: () => LandingBlogRoute,
+  } as any)
+const LandingBlogMitchellHashimotoJoinsPolarAsAnAdvisorRoute =
+  LandingBlogMitchellHashimotoJoinsPolarAsAnAdvisorRouteImport.update({
+    id: '/mitchell-hashimoto-joins-polar-as-an-advisor',
+    path: '/mitchell-hashimoto-joins-polar-as-an-advisor',
+    getParentRoute: () => LandingBlogRoute,
+  } as any)
+const LandingBlogOrbitLlmSafeDesignSystemRoute =
+  LandingBlogOrbitLlmSafeDesignSystemRouteImport.update({
+    id: '/orbit-llm-safe-design-system',
+    path: '/orbit-llm-safe-design-system',
+    getParentRoute: () => LandingBlogRoute,
+  } as any)
+const LandingBlogPolarSeedAnnouncementRoute =
+  LandingBlogPolarSeedAnnouncementRouteImport.update({
+    id: '/polar-seed-announcement',
+    path: '/polar-seed-announcement',
+    getParentRoute: () => LandingBlogRoute,
+  } as any)
+const LandingBlogPromptAStartup2026Route =
+  LandingBlogPromptAStartup2026RouteImport.update({
+    id: '/prompt-a-startup-2026',
+    path: '/prompt-a-startup-2026',
+    getParentRoute: () => LandingBlogRoute,
+  } as any)
 const LandingCustomersStillaAiRoute =
   LandingCustomersStillaAiRouteImport.update({
     id: '/customers/stilla-ai',
@@ -227,12 +268,17 @@ const LandingResourcesComparisonStripeRoute =
 
 export interface FileRoutesByFullPath {
   '/': typeof LandingIndexRoute
-  '/blog': typeof LandingBlogRoute
+  '/blog': typeof LandingBlogRouteWithChildren
   '/company': typeof LandingCompanyRoute
   '/downloads': typeof LandingDownloadsRoute
   '/legal': typeof LandingLegalRouteWithChildren
   '/startup-program': typeof LandingStartupProgramRoute
   '/api/startup-program': typeof ApiStartupProgramRoute
+  '/blog/introducing-polar-plans': typeof LandingBlogIntroducingPolarPlansRoute
+  '/blog/mitchell-hashimoto-joins-polar-as-an-advisor': typeof LandingBlogMitchellHashimotoJoinsPolarAsAnAdvisorRoute
+  '/blog/orbit-llm-safe-design-system': typeof LandingBlogOrbitLlmSafeDesignSystemRoute
+  '/blog/polar-seed-announcement': typeof LandingBlogPolarSeedAnnouncementRoute
+  '/blog/prompt-a-startup-2026': typeof LandingBlogPromptAStartup2026Route
   '/customers/stilla-ai': typeof LandingCustomersStillaAiRoute
   '/features/cost-insights': typeof LandingFeaturesCostInsightsRoute
   '/features/credits': typeof LandingFeaturesCreditsRoute
@@ -253,6 +299,7 @@ export interface FileRoutesByFullPath {
   '/resources/merchant-of-record': typeof LandingResourcesMerchantOfRecordRoute
   '/resources/pricing': typeof LandingResourcesPricingRoute
   '/resources/why': typeof LandingResourcesWhyRoute
+  '/blog/': typeof LandingBlogIndexRoute
   '/legal/': typeof LandingLegalIndexRoute
   '/resources/': typeof LandingResourcesIndexRoute
   '/resources/comparison/lemon-squeezy': typeof LandingResourcesComparisonLemonSqueezyRoute
@@ -260,12 +307,16 @@ export interface FileRoutesByFullPath {
   '/resources/comparison/stripe': typeof LandingResourcesComparisonStripeRoute
 }
 export interface FileRoutesByTo {
-  '/blog': typeof LandingBlogRoute
   '/company': typeof LandingCompanyRoute
   '/downloads': typeof LandingDownloadsRoute
   '/startup-program': typeof LandingStartupProgramRoute
   '/api/startup-program': typeof ApiStartupProgramRoute
   '/': typeof LandingIndexRoute
+  '/blog/introducing-polar-plans': typeof LandingBlogIntroducingPolarPlansRoute
+  '/blog/mitchell-hashimoto-joins-polar-as-an-advisor': typeof LandingBlogMitchellHashimotoJoinsPolarAsAnAdvisorRoute
+  '/blog/orbit-llm-safe-design-system': typeof LandingBlogOrbitLlmSafeDesignSystemRoute
+  '/blog/polar-seed-announcement': typeof LandingBlogPolarSeedAnnouncementRoute
+  '/blog/prompt-a-startup-2026': typeof LandingBlogPromptAStartup2026Route
   '/customers/stilla-ai': typeof LandingCustomersStillaAiRoute
   '/features/cost-insights': typeof LandingFeaturesCostInsightsRoute
   '/features/credits': typeof LandingFeaturesCreditsRoute
@@ -286,6 +337,7 @@ export interface FileRoutesByTo {
   '/resources/merchant-of-record': typeof LandingResourcesMerchantOfRecordRoute
   '/resources/pricing': typeof LandingResourcesPricingRoute
   '/resources/why': typeof LandingResourcesWhyRoute
+  '/blog': typeof LandingBlogIndexRoute
   '/legal': typeof LandingLegalIndexRoute
   '/resources': typeof LandingResourcesIndexRoute
   '/resources/comparison/lemon-squeezy': typeof LandingResourcesComparisonLemonSqueezyRoute
@@ -295,13 +347,18 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/_landing': typeof LandingRouteWithChildren
-  '/_landing/blog': typeof LandingBlogRoute
+  '/_landing/blog': typeof LandingBlogRouteWithChildren
   '/_landing/company': typeof LandingCompanyRoute
   '/_landing/downloads': typeof LandingDownloadsRoute
   '/_landing/legal': typeof LandingLegalRouteWithChildren
   '/_landing/startup-program': typeof LandingStartupProgramRoute
   '/api/startup-program': typeof ApiStartupProgramRoute
   '/_landing/': typeof LandingIndexRoute
+  '/_landing/blog/introducing-polar-plans': typeof LandingBlogIntroducingPolarPlansRoute
+  '/_landing/blog/mitchell-hashimoto-joins-polar-as-an-advisor': typeof LandingBlogMitchellHashimotoJoinsPolarAsAnAdvisorRoute
+  '/_landing/blog/orbit-llm-safe-design-system': typeof LandingBlogOrbitLlmSafeDesignSystemRoute
+  '/_landing/blog/polar-seed-announcement': typeof LandingBlogPolarSeedAnnouncementRoute
+  '/_landing/blog/prompt-a-startup-2026': typeof LandingBlogPromptAStartup2026Route
   '/_landing/customers/stilla-ai': typeof LandingCustomersStillaAiRoute
   '/_landing/features/cost-insights': typeof LandingFeaturesCostInsightsRoute
   '/_landing/features/credits': typeof LandingFeaturesCreditsRoute
@@ -322,6 +379,7 @@ export interface FileRoutesById {
   '/_landing/resources/merchant-of-record': typeof LandingResourcesMerchantOfRecordRoute
   '/_landing/resources/pricing': typeof LandingResourcesPricingRoute
   '/_landing/resources/why': typeof LandingResourcesWhyRoute
+  '/_landing/blog/': typeof LandingBlogIndexRoute
   '/_landing/legal/': typeof LandingLegalIndexRoute
   '/_landing/resources/': typeof LandingResourcesIndexRoute
   '/_landing/resources/comparison/lemon-squeezy': typeof LandingResourcesComparisonLemonSqueezyRoute
@@ -338,6 +396,11 @@ export interface FileRouteTypes {
     | '/legal'
     | '/startup-program'
     | '/api/startup-program'
+    | '/blog/introducing-polar-plans'
+    | '/blog/mitchell-hashimoto-joins-polar-as-an-advisor'
+    | '/blog/orbit-llm-safe-design-system'
+    | '/blog/polar-seed-announcement'
+    | '/blog/prompt-a-startup-2026'
     | '/customers/stilla-ai'
     | '/features/cost-insights'
     | '/features/credits'
@@ -358,6 +421,7 @@ export interface FileRouteTypes {
     | '/resources/merchant-of-record'
     | '/resources/pricing'
     | '/resources/why'
+    | '/blog/'
     | '/legal/'
     | '/resources/'
     | '/resources/comparison/lemon-squeezy'
@@ -365,12 +429,16 @@ export interface FileRouteTypes {
     | '/resources/comparison/stripe'
   fileRoutesByTo: FileRoutesByTo
   to:
-    | '/blog'
     | '/company'
     | '/downloads'
     | '/startup-program'
     | '/api/startup-program'
     | '/'
+    | '/blog/introducing-polar-plans'
+    | '/blog/mitchell-hashimoto-joins-polar-as-an-advisor'
+    | '/blog/orbit-llm-safe-design-system'
+    | '/blog/polar-seed-announcement'
+    | '/blog/prompt-a-startup-2026'
     | '/customers/stilla-ai'
     | '/features/cost-insights'
     | '/features/credits'
@@ -391,6 +459,7 @@ export interface FileRouteTypes {
     | '/resources/merchant-of-record'
     | '/resources/pricing'
     | '/resources/why'
+    | '/blog'
     | '/legal'
     | '/resources'
     | '/resources/comparison/lemon-squeezy'
@@ -406,6 +475,11 @@ export interface FileRouteTypes {
     | '/_landing/startup-program'
     | '/api/startup-program'
     | '/_landing/'
+    | '/_landing/blog/introducing-polar-plans'
+    | '/_landing/blog/mitchell-hashimoto-joins-polar-as-an-advisor'
+    | '/_landing/blog/orbit-llm-safe-design-system'
+    | '/_landing/blog/polar-seed-announcement'
+    | '/_landing/blog/prompt-a-startup-2026'
     | '/_landing/customers/stilla-ai'
     | '/_landing/features/cost-insights'
     | '/_landing/features/credits'
@@ -426,6 +500,7 @@ export interface FileRouteTypes {
     | '/_landing/resources/merchant-of-record'
     | '/_landing/resources/pricing'
     | '/_landing/resources/why'
+    | '/_landing/blog/'
     | '/_landing/legal/'
     | '/_landing/resources/'
     | '/_landing/resources/comparison/lemon-squeezy'
@@ -495,6 +570,48 @@ declare module '@tanstack/react-router' {
       fullPath: '/api/startup-program'
       preLoaderRoute: typeof ApiStartupProgramRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/_landing/blog/': {
+      id: '/_landing/blog/'
+      path: '/'
+      fullPath: '/blog/'
+      preLoaderRoute: typeof LandingBlogIndexRouteImport
+      parentRoute: typeof LandingBlogRoute
+    }
+    '/_landing/blog/introducing-polar-plans': {
+      id: '/_landing/blog/introducing-polar-plans'
+      path: '/introducing-polar-plans'
+      fullPath: '/blog/introducing-polar-plans'
+      preLoaderRoute: typeof LandingBlogIntroducingPolarPlansRouteImport
+      parentRoute: typeof LandingBlogRoute
+    }
+    '/_landing/blog/mitchell-hashimoto-joins-polar-as-an-advisor': {
+      id: '/_landing/blog/mitchell-hashimoto-joins-polar-as-an-advisor'
+      path: '/mitchell-hashimoto-joins-polar-as-an-advisor'
+      fullPath: '/blog/mitchell-hashimoto-joins-polar-as-an-advisor'
+      preLoaderRoute: typeof LandingBlogMitchellHashimotoJoinsPolarAsAnAdvisorRouteImport
+      parentRoute: typeof LandingBlogRoute
+    }
+    '/_landing/blog/orbit-llm-safe-design-system': {
+      id: '/_landing/blog/orbit-llm-safe-design-system'
+      path: '/orbit-llm-safe-design-system'
+      fullPath: '/blog/orbit-llm-safe-design-system'
+      preLoaderRoute: typeof LandingBlogOrbitLlmSafeDesignSystemRouteImport
+      parentRoute: typeof LandingBlogRoute
+    }
+    '/_landing/blog/polar-seed-announcement': {
+      id: '/_landing/blog/polar-seed-announcement'
+      path: '/polar-seed-announcement'
+      fullPath: '/blog/polar-seed-announcement'
+      preLoaderRoute: typeof LandingBlogPolarSeedAnnouncementRouteImport
+      parentRoute: typeof LandingBlogRoute
+    }
+    '/_landing/blog/prompt-a-startup-2026': {
+      id: '/_landing/blog/prompt-a-startup-2026'
+      path: '/prompt-a-startup-2026'
+      fullPath: '/blog/prompt-a-startup-2026'
+      preLoaderRoute: typeof LandingBlogPromptAStartup2026RouteImport
+      parentRoute: typeof LandingBlogRoute
     }
     '/_landing/customers/stilla-ai': {
       id: '/_landing/customers/stilla-ai'
@@ -674,6 +791,30 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface LandingBlogRouteChildren {
+  LandingBlogIntroducingPolarPlansRoute: typeof LandingBlogIntroducingPolarPlansRoute
+  LandingBlogMitchellHashimotoJoinsPolarAsAnAdvisorRoute: typeof LandingBlogMitchellHashimotoJoinsPolarAsAnAdvisorRoute
+  LandingBlogOrbitLlmSafeDesignSystemRoute: typeof LandingBlogOrbitLlmSafeDesignSystemRoute
+  LandingBlogPolarSeedAnnouncementRoute: typeof LandingBlogPolarSeedAnnouncementRoute
+  LandingBlogPromptAStartup2026Route: typeof LandingBlogPromptAStartup2026Route
+  LandingBlogIndexRoute: typeof LandingBlogIndexRoute
+}
+
+const LandingBlogRouteChildren: LandingBlogRouteChildren = {
+  LandingBlogIntroducingPolarPlansRoute: LandingBlogIntroducingPolarPlansRoute,
+  LandingBlogMitchellHashimotoJoinsPolarAsAnAdvisorRoute:
+    LandingBlogMitchellHashimotoJoinsPolarAsAnAdvisorRoute,
+  LandingBlogOrbitLlmSafeDesignSystemRoute:
+    LandingBlogOrbitLlmSafeDesignSystemRoute,
+  LandingBlogPolarSeedAnnouncementRoute: LandingBlogPolarSeedAnnouncementRoute,
+  LandingBlogPromptAStartup2026Route: LandingBlogPromptAStartup2026Route,
+  LandingBlogIndexRoute: LandingBlogIndexRoute,
+}
+
+const LandingBlogRouteWithChildren = LandingBlogRoute._addFileChildren(
+  LandingBlogRouteChildren,
+)
+
 interface LandingLegalRouteChildren {
   LandingLegalAcceptableUsePolicyRoute: typeof LandingLegalAcceptableUsePolicyRoute
   LandingLegalCheckoutBuyerTermsRoute: typeof LandingLegalCheckoutBuyerTermsRoute
@@ -703,7 +844,7 @@ const LandingLegalRouteWithChildren = LandingLegalRoute._addFileChildren(
 )
 
 interface LandingRouteChildren {
-  LandingBlogRoute: typeof LandingBlogRoute
+  LandingBlogRoute: typeof LandingBlogRouteWithChildren
   LandingCompanyRoute: typeof LandingCompanyRoute
   LandingDownloadsRoute: typeof LandingDownloadsRoute
   LandingLegalRoute: typeof LandingLegalRouteWithChildren
@@ -729,7 +870,7 @@ interface LandingRouteChildren {
 }
 
 const LandingRouteChildren: LandingRouteChildren = {
-  LandingBlogRoute: LandingBlogRoute,
+  LandingBlogRoute: LandingBlogRouteWithChildren,
   LandingCompanyRoute: LandingCompanyRoute,
   LandingDownloadsRoute: LandingDownloadsRoute,
   LandingLegalRoute: LandingLegalRouteWithChildren,
