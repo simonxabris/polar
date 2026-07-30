@@ -9,7 +9,9 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as AuthenticatedRouteImport } from './routes/_authenticated'
 import { Route as LandingRouteImport } from './routes/_landing'
+import { Route as AuthRouteImport } from './routes/auth'
 import { Route as LandingIndexRouteImport } from './routes/_landing/index'
 import { Route as LandingBlogRouteImport } from './routes/_landing/blog'
 import { Route as LandingCompanyRouteImport } from './routes/_landing/company'
@@ -17,6 +19,12 @@ import { Route as LandingDownloadsRouteImport } from './routes/_landing/download
 import { Route as LandingLegalRouteImport } from './routes/_landing/legal'
 import { Route as LandingStartupProgramRouteImport } from './routes/_landing/startup-program'
 import { Route as ApiStartupProgramRouteImport } from './routes/api/startup-program'
+import { Route as AuthIndexRouteImport } from './routes/auth/index'
+import { Route as AuthBackupCodesRouteImport } from './routes/auth/backup-codes'
+import { Route as AuthEmailOtpRouteImport } from './routes/auth/email-otp'
+import { Route as AuthTotpRouteImport } from './routes/auth/totp'
+import { Route as AuthenticatedDashboardIndexRouteImport } from './routes/_authenticated/dashboard/index'
+import { Route as AuthenticatedDashboardOrganizationRouteImport } from './routes/_authenticated/dashboard/$organization'
 import { Route as LandingBlogIndexRouteImport } from './routes/_landing/blog/index'
 import { Route as LandingBlogIntroducingPolarPlansRouteImport } from './routes/_landing/blog/introducing-polar-plans'
 import { Route as LandingBlogMitchellHashimotoJoinsPolarAsAnAdvisorRouteImport } from './routes/_landing/blog/mitchell-hashimoto-joins-polar-as-an-advisor'
@@ -45,12 +53,22 @@ import { Route as LandingResourcesIndexRouteImport } from './routes/_landing/res
 import { Route as LandingResourcesMerchantOfRecordRouteImport } from './routes/_landing/resources/merchant-of-record'
 import { Route as LandingResourcesPricingRouteImport } from './routes/_landing/resources/pricing'
 import { Route as LandingResourcesWhyRouteImport } from './routes/_landing/resources/why'
+import { Route as AuthSsoSlugRouteImport } from './routes/auth/sso/$slug'
 import { Route as LandingResourcesComparisonLemonSqueezyRouteImport } from './routes/_landing/resources/comparison/lemon-squeezy'
 import { Route as LandingResourcesComparisonPaddleRouteImport } from './routes/_landing/resources/comparison/paddle'
 import { Route as LandingResourcesComparisonStripeRouteImport } from './routes/_landing/resources/comparison/stripe'
 
+const AuthenticatedRoute = AuthenticatedRouteImport.update({
+  id: '/_authenticated',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LandingRoute = LandingRouteImport.update({
   id: '/_landing',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LandingIndexRoute = LandingIndexRouteImport.update({
@@ -88,6 +106,38 @@ const ApiStartupProgramRoute = ApiStartupProgramRouteImport.update({
   path: '/api/startup-program',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthIndexRoute = AuthIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AuthRoute,
+} as any)
+const AuthBackupCodesRoute = AuthBackupCodesRouteImport.update({
+  id: '/backup-codes',
+  path: '/backup-codes',
+  getParentRoute: () => AuthRoute,
+} as any)
+const AuthEmailOtpRoute = AuthEmailOtpRouteImport.update({
+  id: '/email-otp',
+  path: '/email-otp',
+  getParentRoute: () => AuthRoute,
+} as any)
+const AuthTotpRoute = AuthTotpRouteImport.update({
+  id: '/totp',
+  path: '/totp',
+  getParentRoute: () => AuthRoute,
+} as any)
+const AuthenticatedDashboardIndexRoute =
+  AuthenticatedDashboardIndexRouteImport.update({
+    id: '/dashboard/',
+    path: '/dashboard/',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
+const AuthenticatedDashboardOrganizationRoute =
+  AuthenticatedDashboardOrganizationRouteImport.update({
+    id: '/dashboard/$organization',
+    path: '/dashboard/$organization',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
 const LandingBlogIndexRoute = LandingBlogIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -247,6 +297,11 @@ const LandingResourcesWhyRoute = LandingResourcesWhyRouteImport.update({
   path: '/resources/why',
   getParentRoute: () => LandingRoute,
 } as any)
+const AuthSsoSlugRoute = AuthSsoSlugRouteImport.update({
+  id: '/sso/$slug',
+  path: '/sso/$slug',
+  getParentRoute: () => AuthRoute,
+} as any)
 const LandingResourcesComparisonLemonSqueezyRoute =
   LandingResourcesComparisonLemonSqueezyRouteImport.update({
     id: '/resources/comparison/lemon-squeezy',
@@ -268,12 +323,18 @@ const LandingResourcesComparisonStripeRoute =
 
 export interface FileRoutesByFullPath {
   '/': typeof LandingIndexRoute
+  '/auth': typeof AuthRouteWithChildren
   '/blog': typeof LandingBlogRouteWithChildren
   '/company': typeof LandingCompanyRoute
   '/downloads': typeof LandingDownloadsRoute
   '/legal': typeof LandingLegalRouteWithChildren
   '/startup-program': typeof LandingStartupProgramRoute
   '/api/startup-program': typeof ApiStartupProgramRoute
+  '/auth/backup-codes': typeof AuthBackupCodesRoute
+  '/auth/email-otp': typeof AuthEmailOtpRoute
+  '/auth/totp': typeof AuthTotpRoute
+  '/auth/': typeof AuthIndexRoute
+  '/dashboard/$organization': typeof AuthenticatedDashboardOrganizationRoute
   '/blog/introducing-polar-plans': typeof LandingBlogIntroducingPolarPlansRoute
   '/blog/mitchell-hashimoto-joins-polar-as-an-advisor': typeof LandingBlogMitchellHashimotoJoinsPolarAsAnAdvisorRoute
   '/blog/orbit-llm-safe-design-system': typeof LandingBlogOrbitLlmSafeDesignSystemRoute
@@ -299,6 +360,8 @@ export interface FileRoutesByFullPath {
   '/resources/merchant-of-record': typeof LandingResourcesMerchantOfRecordRoute
   '/resources/pricing': typeof LandingResourcesPricingRoute
   '/resources/why': typeof LandingResourcesWhyRoute
+  '/auth/sso/$slug': typeof AuthSsoSlugRoute
+  '/dashboard/': typeof AuthenticatedDashboardIndexRoute
   '/blog/': typeof LandingBlogIndexRoute
   '/legal/': typeof LandingLegalIndexRoute
   '/resources/': typeof LandingResourcesIndexRoute
@@ -307,11 +370,16 @@ export interface FileRoutesByFullPath {
   '/resources/comparison/stripe': typeof LandingResourcesComparisonStripeRoute
 }
 export interface FileRoutesByTo {
+  '/': typeof LandingIndexRoute
   '/company': typeof LandingCompanyRoute
   '/downloads': typeof LandingDownloadsRoute
   '/startup-program': typeof LandingStartupProgramRoute
   '/api/startup-program': typeof ApiStartupProgramRoute
-  '/': typeof LandingIndexRoute
+  '/auth/backup-codes': typeof AuthBackupCodesRoute
+  '/auth/email-otp': typeof AuthEmailOtpRoute
+  '/auth/totp': typeof AuthTotpRoute
+  '/auth': typeof AuthIndexRoute
+  '/dashboard/$organization': typeof AuthenticatedDashboardOrganizationRoute
   '/blog/introducing-polar-plans': typeof LandingBlogIntroducingPolarPlansRoute
   '/blog/mitchell-hashimoto-joins-polar-as-an-advisor': typeof LandingBlogMitchellHashimotoJoinsPolarAsAnAdvisorRoute
   '/blog/orbit-llm-safe-design-system': typeof LandingBlogOrbitLlmSafeDesignSystemRoute
@@ -337,6 +405,8 @@ export interface FileRoutesByTo {
   '/resources/merchant-of-record': typeof LandingResourcesMerchantOfRecordRoute
   '/resources/pricing': typeof LandingResourcesPricingRoute
   '/resources/why': typeof LandingResourcesWhyRoute
+  '/auth/sso/$slug': typeof AuthSsoSlugRoute
+  '/dashboard': typeof AuthenticatedDashboardIndexRoute
   '/blog': typeof LandingBlogIndexRoute
   '/legal': typeof LandingLegalIndexRoute
   '/resources': typeof LandingResourcesIndexRoute
@@ -346,14 +416,21 @@ export interface FileRoutesByTo {
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
+  '/_authenticated': typeof AuthenticatedRouteWithChildren
   '/_landing': typeof LandingRouteWithChildren
+  '/auth': typeof AuthRouteWithChildren
   '/_landing/blog': typeof LandingBlogRouteWithChildren
   '/_landing/company': typeof LandingCompanyRoute
   '/_landing/downloads': typeof LandingDownloadsRoute
   '/_landing/legal': typeof LandingLegalRouteWithChildren
   '/_landing/startup-program': typeof LandingStartupProgramRoute
   '/api/startup-program': typeof ApiStartupProgramRoute
+  '/auth/backup-codes': typeof AuthBackupCodesRoute
+  '/auth/email-otp': typeof AuthEmailOtpRoute
+  '/auth/totp': typeof AuthTotpRoute
   '/_landing/': typeof LandingIndexRoute
+  '/auth/': typeof AuthIndexRoute
+  '/_authenticated/dashboard/$organization': typeof AuthenticatedDashboardOrganizationRoute
   '/_landing/blog/introducing-polar-plans': typeof LandingBlogIntroducingPolarPlansRoute
   '/_landing/blog/mitchell-hashimoto-joins-polar-as-an-advisor': typeof LandingBlogMitchellHashimotoJoinsPolarAsAnAdvisorRoute
   '/_landing/blog/orbit-llm-safe-design-system': typeof LandingBlogOrbitLlmSafeDesignSystemRoute
@@ -379,6 +456,8 @@ export interface FileRoutesById {
   '/_landing/resources/merchant-of-record': typeof LandingResourcesMerchantOfRecordRoute
   '/_landing/resources/pricing': typeof LandingResourcesPricingRoute
   '/_landing/resources/why': typeof LandingResourcesWhyRoute
+  '/auth/sso/$slug': typeof AuthSsoSlugRoute
+  '/_authenticated/dashboard/': typeof AuthenticatedDashboardIndexRoute
   '/_landing/blog/': typeof LandingBlogIndexRoute
   '/_landing/legal/': typeof LandingLegalIndexRoute
   '/_landing/resources/': typeof LandingResourcesIndexRoute
@@ -390,12 +469,18 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/auth'
     | '/blog'
     | '/company'
     | '/downloads'
     | '/legal'
     | '/startup-program'
     | '/api/startup-program'
+    | '/auth/backup-codes'
+    | '/auth/email-otp'
+    | '/auth/totp'
+    | '/auth/'
+    | '/dashboard/$organization'
     | '/blog/introducing-polar-plans'
     | '/blog/mitchell-hashimoto-joins-polar-as-an-advisor'
     | '/blog/orbit-llm-safe-design-system'
@@ -421,6 +506,8 @@ export interface FileRouteTypes {
     | '/resources/merchant-of-record'
     | '/resources/pricing'
     | '/resources/why'
+    | '/auth/sso/$slug'
+    | '/dashboard/'
     | '/blog/'
     | '/legal/'
     | '/resources/'
@@ -429,11 +516,16 @@ export interface FileRouteTypes {
     | '/resources/comparison/stripe'
   fileRoutesByTo: FileRoutesByTo
   to:
+    | '/'
     | '/company'
     | '/downloads'
     | '/startup-program'
     | '/api/startup-program'
-    | '/'
+    | '/auth/backup-codes'
+    | '/auth/email-otp'
+    | '/auth/totp'
+    | '/auth'
+    | '/dashboard/$organization'
     | '/blog/introducing-polar-plans'
     | '/blog/mitchell-hashimoto-joins-polar-as-an-advisor'
     | '/blog/orbit-llm-safe-design-system'
@@ -459,6 +551,8 @@ export interface FileRouteTypes {
     | '/resources/merchant-of-record'
     | '/resources/pricing'
     | '/resources/why'
+    | '/auth/sso/$slug'
+    | '/dashboard'
     | '/blog'
     | '/legal'
     | '/resources'
@@ -467,14 +561,21 @@ export interface FileRouteTypes {
     | '/resources/comparison/stripe'
   id:
     | '__root__'
+    | '/_authenticated'
     | '/_landing'
+    | '/auth'
     | '/_landing/blog'
     | '/_landing/company'
     | '/_landing/downloads'
     | '/_landing/legal'
     | '/_landing/startup-program'
     | '/api/startup-program'
+    | '/auth/backup-codes'
+    | '/auth/email-otp'
+    | '/auth/totp'
     | '/_landing/'
+    | '/auth/'
+    | '/_authenticated/dashboard/$organization'
     | '/_landing/blog/introducing-polar-plans'
     | '/_landing/blog/mitchell-hashimoto-joins-polar-as-an-advisor'
     | '/_landing/blog/orbit-llm-safe-design-system'
@@ -500,6 +601,8 @@ export interface FileRouteTypes {
     | '/_landing/resources/merchant-of-record'
     | '/_landing/resources/pricing'
     | '/_landing/resources/why'
+    | '/auth/sso/$slug'
+    | '/_authenticated/dashboard/'
     | '/_landing/blog/'
     | '/_landing/legal/'
     | '/_landing/resources/'
@@ -509,17 +612,33 @@ export interface FileRouteTypes {
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
+  AuthenticatedRoute: typeof AuthenticatedRouteWithChildren
   LandingRoute: typeof LandingRouteWithChildren
+  AuthRoute: typeof AuthRouteWithChildren
   ApiStartupProgramRoute: typeof ApiStartupProgramRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/_landing': {
       id: '/_landing'
       path: ''
       fullPath: '/'
       preLoaderRoute: typeof LandingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_landing/': {
@@ -570,6 +689,48 @@ declare module '@tanstack/react-router' {
       fullPath: '/api/startup-program'
       preLoaderRoute: typeof ApiStartupProgramRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/auth/': {
+      id: '/auth/'
+      path: '/'
+      fullPath: '/auth/'
+      preLoaderRoute: typeof AuthIndexRouteImport
+      parentRoute: typeof AuthRoute
+    }
+    '/auth/backup-codes': {
+      id: '/auth/backup-codes'
+      path: '/backup-codes'
+      fullPath: '/auth/backup-codes'
+      preLoaderRoute: typeof AuthBackupCodesRouteImport
+      parentRoute: typeof AuthRoute
+    }
+    '/auth/email-otp': {
+      id: '/auth/email-otp'
+      path: '/email-otp'
+      fullPath: '/auth/email-otp'
+      preLoaderRoute: typeof AuthEmailOtpRouteImport
+      parentRoute: typeof AuthRoute
+    }
+    '/auth/totp': {
+      id: '/auth/totp'
+      path: '/totp'
+      fullPath: '/auth/totp'
+      preLoaderRoute: typeof AuthTotpRouteImport
+      parentRoute: typeof AuthRoute
+    }
+    '/_authenticated/dashboard/': {
+      id: '/_authenticated/dashboard/'
+      path: '/dashboard'
+      fullPath: '/dashboard/'
+      preLoaderRoute: typeof AuthenticatedDashboardIndexRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/dashboard/$organization': {
+      id: '/_authenticated/dashboard/$organization'
+      path: '/dashboard/$organization'
+      fullPath: '/dashboard/$organization'
+      preLoaderRoute: typeof AuthenticatedDashboardOrganizationRouteImport
+      parentRoute: typeof AuthenticatedRoute
     }
     '/_landing/blog/': {
       id: '/_landing/blog/'
@@ -767,6 +928,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LandingResourcesWhyRouteImport
       parentRoute: typeof LandingRoute
     }
+    '/auth/sso/$slug': {
+      id: '/auth/sso/$slug'
+      path: '/sso/$slug'
+      fullPath: '/auth/sso/$slug'
+      preLoaderRoute: typeof AuthSsoSlugRouteImport
+      parentRoute: typeof AuthRoute
+    }
     '/_landing/resources/comparison/lemon-squeezy': {
       id: '/_landing/resources/comparison/lemon-squeezy'
       path: '/resources/comparison/lemon-squeezy'
@@ -790,6 +958,21 @@ declare module '@tanstack/react-router' {
     }
   }
 }
+
+interface AuthenticatedRouteChildren {
+  AuthenticatedDashboardOrganizationRoute: typeof AuthenticatedDashboardOrganizationRoute
+  AuthenticatedDashboardIndexRoute: typeof AuthenticatedDashboardIndexRoute
+}
+
+const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
+  AuthenticatedDashboardOrganizationRoute:
+    AuthenticatedDashboardOrganizationRoute,
+  AuthenticatedDashboardIndexRoute: AuthenticatedDashboardIndexRoute,
+}
+
+const AuthenticatedRouteWithChildren = AuthenticatedRoute._addFileChildren(
+  AuthenticatedRouteChildren,
+)
 
 interface LandingBlogRouteChildren {
   LandingBlogIntroducingPolarPlansRoute: typeof LandingBlogIntroducingPolarPlansRoute
@@ -899,8 +1082,28 @@ const LandingRouteChildren: LandingRouteChildren = {
 const LandingRouteWithChildren =
   LandingRoute._addFileChildren(LandingRouteChildren)
 
+interface AuthRouteChildren {
+  AuthBackupCodesRoute: typeof AuthBackupCodesRoute
+  AuthEmailOtpRoute: typeof AuthEmailOtpRoute
+  AuthTotpRoute: typeof AuthTotpRoute
+  AuthIndexRoute: typeof AuthIndexRoute
+  AuthSsoSlugRoute: typeof AuthSsoSlugRoute
+}
+
+const AuthRouteChildren: AuthRouteChildren = {
+  AuthBackupCodesRoute: AuthBackupCodesRoute,
+  AuthEmailOtpRoute: AuthEmailOtpRoute,
+  AuthTotpRoute: AuthTotpRoute,
+  AuthIndexRoute: AuthIndexRoute,
+  AuthSsoSlugRoute: AuthSsoSlugRoute,
+}
+
+const AuthRouteWithChildren = AuthRoute._addFileChildren(AuthRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
+  AuthenticatedRoute: AuthenticatedRouteWithChildren,
   LandingRoute: LandingRouteWithChildren,
+  AuthRoute: AuthRouteWithChildren,
   ApiStartupProgramRoute: ApiStartupProgramRoute,
 }
 export const routeTree = rootRouteImport
