@@ -54,6 +54,7 @@ import { Route as LandingResourcesMerchantOfRecordRouteImport } from './routes/_
 import { Route as LandingResourcesPricingRouteImport } from './routes/_landing/resources/pricing'
 import { Route as LandingResourcesWhyRouteImport } from './routes/_landing/resources/why'
 import { Route as AuthSsoSlugRouteImport } from './routes/auth/sso/$slug'
+import { Route as AuthenticatedDashboardOrganizationIndexRouteImport } from './routes/_authenticated/dashboard/$organization/index'
 import { Route as LandingResourcesComparisonLemonSqueezyRouteImport } from './routes/_landing/resources/comparison/lemon-squeezy'
 import { Route as LandingResourcesComparisonPaddleRouteImport } from './routes/_landing/resources/comparison/paddle'
 import { Route as LandingResourcesComparisonStripeRouteImport } from './routes/_landing/resources/comparison/stripe'
@@ -302,6 +303,12 @@ const AuthSsoSlugRoute = AuthSsoSlugRouteImport.update({
   path: '/sso/$slug',
   getParentRoute: () => AuthRoute,
 } as any)
+const AuthenticatedDashboardOrganizationIndexRoute =
+  AuthenticatedDashboardOrganizationIndexRouteImport.update({
+    id: '/',
+    path: '/',
+    getParentRoute: () => AuthenticatedDashboardOrganizationRoute,
+  } as any)
 const LandingResourcesComparisonLemonSqueezyRoute =
   LandingResourcesComparisonLemonSqueezyRouteImport.update({
     id: '/resources/comparison/lemon-squeezy',
@@ -334,7 +341,7 @@ export interface FileRoutesByFullPath {
   '/auth/email-otp': typeof AuthEmailOtpRoute
   '/auth/totp': typeof AuthTotpRoute
   '/auth/': typeof AuthIndexRoute
-  '/dashboard/$organization': typeof AuthenticatedDashboardOrganizationRoute
+  '/dashboard/$organization': typeof AuthenticatedDashboardOrganizationRouteWithChildren
   '/blog/introducing-polar-plans': typeof LandingBlogIntroducingPolarPlansRoute
   '/blog/mitchell-hashimoto-joins-polar-as-an-advisor': typeof LandingBlogMitchellHashimotoJoinsPolarAsAnAdvisorRoute
   '/blog/orbit-llm-safe-design-system': typeof LandingBlogOrbitLlmSafeDesignSystemRoute
@@ -368,6 +375,7 @@ export interface FileRoutesByFullPath {
   '/resources/comparison/lemon-squeezy': typeof LandingResourcesComparisonLemonSqueezyRoute
   '/resources/comparison/paddle': typeof LandingResourcesComparisonPaddleRoute
   '/resources/comparison/stripe': typeof LandingResourcesComparisonStripeRoute
+  '/dashboard/$organization/': typeof AuthenticatedDashboardOrganizationIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof LandingIndexRoute
@@ -379,7 +387,6 @@ export interface FileRoutesByTo {
   '/auth/email-otp': typeof AuthEmailOtpRoute
   '/auth/totp': typeof AuthTotpRoute
   '/auth': typeof AuthIndexRoute
-  '/dashboard/$organization': typeof AuthenticatedDashboardOrganizationRoute
   '/blog/introducing-polar-plans': typeof LandingBlogIntroducingPolarPlansRoute
   '/blog/mitchell-hashimoto-joins-polar-as-an-advisor': typeof LandingBlogMitchellHashimotoJoinsPolarAsAnAdvisorRoute
   '/blog/orbit-llm-safe-design-system': typeof LandingBlogOrbitLlmSafeDesignSystemRoute
@@ -413,6 +420,7 @@ export interface FileRoutesByTo {
   '/resources/comparison/lemon-squeezy': typeof LandingResourcesComparisonLemonSqueezyRoute
   '/resources/comparison/paddle': typeof LandingResourcesComparisonPaddleRoute
   '/resources/comparison/stripe': typeof LandingResourcesComparisonStripeRoute
+  '/dashboard/$organization': typeof AuthenticatedDashboardOrganizationIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -430,7 +438,7 @@ export interface FileRoutesById {
   '/auth/totp': typeof AuthTotpRoute
   '/_landing/': typeof LandingIndexRoute
   '/auth/': typeof AuthIndexRoute
-  '/_authenticated/dashboard/$organization': typeof AuthenticatedDashboardOrganizationRoute
+  '/_authenticated/dashboard/$organization': typeof AuthenticatedDashboardOrganizationRouteWithChildren
   '/_landing/blog/introducing-polar-plans': typeof LandingBlogIntroducingPolarPlansRoute
   '/_landing/blog/mitchell-hashimoto-joins-polar-as-an-advisor': typeof LandingBlogMitchellHashimotoJoinsPolarAsAnAdvisorRoute
   '/_landing/blog/orbit-llm-safe-design-system': typeof LandingBlogOrbitLlmSafeDesignSystemRoute
@@ -464,6 +472,7 @@ export interface FileRoutesById {
   '/_landing/resources/comparison/lemon-squeezy': typeof LandingResourcesComparisonLemonSqueezyRoute
   '/_landing/resources/comparison/paddle': typeof LandingResourcesComparisonPaddleRoute
   '/_landing/resources/comparison/stripe': typeof LandingResourcesComparisonStripeRoute
+  '/_authenticated/dashboard/$organization/': typeof AuthenticatedDashboardOrganizationIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -514,6 +523,7 @@ export interface FileRouteTypes {
     | '/resources/comparison/lemon-squeezy'
     | '/resources/comparison/paddle'
     | '/resources/comparison/stripe'
+    | '/dashboard/$organization/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -525,7 +535,6 @@ export interface FileRouteTypes {
     | '/auth/email-otp'
     | '/auth/totp'
     | '/auth'
-    | '/dashboard/$organization'
     | '/blog/introducing-polar-plans'
     | '/blog/mitchell-hashimoto-joins-polar-as-an-advisor'
     | '/blog/orbit-llm-safe-design-system'
@@ -559,6 +568,7 @@ export interface FileRouteTypes {
     | '/resources/comparison/lemon-squeezy'
     | '/resources/comparison/paddle'
     | '/resources/comparison/stripe'
+    | '/dashboard/$organization'
   id:
     | '__root__'
     | '/_authenticated'
@@ -609,6 +619,7 @@ export interface FileRouteTypes {
     | '/_landing/resources/comparison/lemon-squeezy'
     | '/_landing/resources/comparison/paddle'
     | '/_landing/resources/comparison/stripe'
+    | '/_authenticated/dashboard/$organization/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -935,6 +946,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthSsoSlugRouteImport
       parentRoute: typeof AuthRoute
     }
+    '/_authenticated/dashboard/$organization/': {
+      id: '/_authenticated/dashboard/$organization/'
+      path: '/'
+      fullPath: '/dashboard/$organization/'
+      preLoaderRoute: typeof AuthenticatedDashboardOrganizationIndexRouteImport
+      parentRoute: typeof AuthenticatedDashboardOrganizationRoute
+    }
     '/_landing/resources/comparison/lemon-squeezy': {
       id: '/_landing/resources/comparison/lemon-squeezy'
       path: '/resources/comparison/lemon-squeezy'
@@ -959,14 +977,29 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface AuthenticatedDashboardOrganizationRouteChildren {
+  AuthenticatedDashboardOrganizationIndexRoute: typeof AuthenticatedDashboardOrganizationIndexRoute
+}
+
+const AuthenticatedDashboardOrganizationRouteChildren: AuthenticatedDashboardOrganizationRouteChildren =
+  {
+    AuthenticatedDashboardOrganizationIndexRoute:
+      AuthenticatedDashboardOrganizationIndexRoute,
+  }
+
+const AuthenticatedDashboardOrganizationRouteWithChildren =
+  AuthenticatedDashboardOrganizationRoute._addFileChildren(
+    AuthenticatedDashboardOrganizationRouteChildren,
+  )
+
 interface AuthenticatedRouteChildren {
-  AuthenticatedDashboardOrganizationRoute: typeof AuthenticatedDashboardOrganizationRoute
+  AuthenticatedDashboardOrganizationRoute: typeof AuthenticatedDashboardOrganizationRouteWithChildren
   AuthenticatedDashboardIndexRoute: typeof AuthenticatedDashboardIndexRoute
 }
 
 const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
   AuthenticatedDashboardOrganizationRoute:
-    AuthenticatedDashboardOrganizationRoute,
+    AuthenticatedDashboardOrganizationRouteWithChildren,
   AuthenticatedDashboardIndexRoute: AuthenticatedDashboardIndexRoute,
 }
 

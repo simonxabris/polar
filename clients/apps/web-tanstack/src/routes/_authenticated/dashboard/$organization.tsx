@@ -1,5 +1,10 @@
-import { Box } from '@polar-sh/orbit/Box'
-import { createFileRoute, notFound, redirect } from '@tanstack/react-router'
+import { DashboardLayout } from '@/components/Layout/Dashboard/DashboardLayout'
+import {
+  Outlet,
+  createFileRoute,
+  notFound,
+  redirect,
+} from '@tanstack/react-router'
 
 export const Route = createFileRoute('/_authenticated/dashboard/$organization')(
   {
@@ -26,20 +31,21 @@ export const Route = createFileRoute('/_authenticated/dashboard/$organization')(
       }
       throw redirect({ to: '/dashboard', search: {} })
     },
-    head: () => ({ meta: [{ title: 'Overview | Polar' }] }),
-    component: DashboardHomePage,
+    component: DashboardOrganizationLayout,
   },
 )
 
-function DashboardHomePage() {
+function DashboardOrganizationLayout() {
+  const { organization, user } = Route.useRouteContext()
+
   return (
-    <Box
-      as="main"
-      minHeight="100vh"
-      width="100%"
-      backgroundColor="background-primary"
+    <DashboardLayout
+      organization={organization}
+      organizations={user.organizations ?? []}
+      memberOrganizations={user.member_organizations ?? []}
+      user={user}
     >
-      Dash
-    </Box>
+      <Outlet />
+    </DashboardLayout>
   )
 }
