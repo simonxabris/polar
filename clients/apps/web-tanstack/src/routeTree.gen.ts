@@ -61,6 +61,7 @@ import { Route as AuthenticatedDashboardOrganizationIndexRouteImport } from './r
 import { Route as LandingResourcesComparisonLemonSqueezyRouteImport } from './routes/_landing/resources/comparison/lemon-squeezy'
 import { Route as LandingResourcesComparisonPaddleRouteImport } from './routes/_landing/resources/comparison/paddle'
 import { Route as LandingResourcesComparisonStripeRouteImport } from './routes/_landing/resources/comparison/stripe'
+import { Route as AuthenticatedDashboardOrganizationProductsIndexRouteImport } from './routes/_authenticated/dashboard/$organization/products/index'
 
 const AuthenticatedRoute = AuthenticatedRouteImport.update({
   id: '/_authenticated',
@@ -347,6 +348,12 @@ const LandingResourcesComparisonStripeRoute =
     path: '/resources/comparison/stripe',
     getParentRoute: () => LandingRoute,
   } as any)
+const AuthenticatedDashboardOrganizationProductsIndexRoute =
+  AuthenticatedDashboardOrganizationProductsIndexRouteImport.update({
+    id: '/products/',
+    path: '/products/',
+    getParentRoute: () => AuthenticatedDashboardOrganizationRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof LandingIndexRoute
@@ -399,6 +406,7 @@ export interface FileRoutesByFullPath {
   '/resources/comparison/paddle': typeof LandingResourcesComparisonPaddleRoute
   '/resources/comparison/stripe': typeof LandingResourcesComparisonStripeRoute
   '/dashboard/$organization/': typeof AuthenticatedDashboardOrganizationIndexRoute
+  '/dashboard/$organization/products/': typeof AuthenticatedDashboardOrganizationProductsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof LandingIndexRoute
@@ -447,6 +455,7 @@ export interface FileRoutesByTo {
   '/resources/comparison/paddle': typeof LandingResourcesComparisonPaddleRoute
   '/resources/comparison/stripe': typeof LandingResourcesComparisonStripeRoute
   '/dashboard/$organization': typeof AuthenticatedDashboardOrganizationIndexRoute
+  '/dashboard/$organization/products': typeof AuthenticatedDashboardOrganizationProductsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -502,6 +511,7 @@ export interface FileRoutesById {
   '/_landing/resources/comparison/paddle': typeof LandingResourcesComparisonPaddleRoute
   '/_landing/resources/comparison/stripe': typeof LandingResourcesComparisonStripeRoute
   '/_authenticated/dashboard/$organization/': typeof AuthenticatedDashboardOrganizationIndexRoute
+  '/_authenticated/dashboard/$organization/products/': typeof AuthenticatedDashboardOrganizationProductsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -556,6 +566,7 @@ export interface FileRouteTypes {
     | '/resources/comparison/paddle'
     | '/resources/comparison/stripe'
     | '/dashboard/$organization/'
+    | '/dashboard/$organization/products/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -604,6 +615,7 @@ export interface FileRouteTypes {
     | '/resources/comparison/paddle'
     | '/resources/comparison/stripe'
     | '/dashboard/$organization'
+    | '/dashboard/$organization/products'
   id:
     | '__root__'
     | '/_authenticated'
@@ -658,6 +670,7 @@ export interface FileRouteTypes {
     | '/_landing/resources/comparison/paddle'
     | '/_landing/resources/comparison/stripe'
     | '/_authenticated/dashboard/$organization/'
+    | '/_authenticated/dashboard/$organization/products/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -1033,6 +1046,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LandingResourcesComparisonStripeRouteImport
       parentRoute: typeof LandingRoute
     }
+    '/_authenticated/dashboard/$organization/products/': {
+      id: '/_authenticated/dashboard/$organization/products/'
+      path: '/products'
+      fullPath: '/dashboard/$organization/products/'
+      preLoaderRoute: typeof AuthenticatedDashboardOrganizationProductsIndexRouteImport
+      parentRoute: typeof AuthenticatedDashboardOrganizationRoute
+    }
   }
 }
 
@@ -1055,12 +1075,15 @@ const AuthenticatedOnboardingRouteWithChildren =
 
 interface AuthenticatedDashboardOrganizationRouteChildren {
   AuthenticatedDashboardOrganizationIndexRoute: typeof AuthenticatedDashboardOrganizationIndexRoute
+  AuthenticatedDashboardOrganizationProductsIndexRoute: typeof AuthenticatedDashboardOrganizationProductsIndexRoute
 }
 
 const AuthenticatedDashboardOrganizationRouteChildren: AuthenticatedDashboardOrganizationRouteChildren =
   {
     AuthenticatedDashboardOrganizationIndexRoute:
       AuthenticatedDashboardOrganizationIndexRoute,
+    AuthenticatedDashboardOrganizationProductsIndexRoute:
+      AuthenticatedDashboardOrganizationProductsIndexRoute,
   }
 
 const AuthenticatedDashboardOrganizationRouteWithChildren =

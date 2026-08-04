@@ -669,6 +669,9 @@ importers:
       '@posthog/core':
         specifier: ^1.25.2
         version: 1.25.2
+      '@radix-ui/react-toast':
+        specifier: ^1.2.15
+        version: 1.2.15(@types/react-dom@19.2.3(@types/react@19.2.13))(@types/react@19.2.13)(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
       '@sentry/react':
         specifier: ^10.49.0
         version: 10.49.0(react@19.2.5)

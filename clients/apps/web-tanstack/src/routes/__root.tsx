@@ -11,6 +11,7 @@ import TanStackQueryDevtools from '../integrations/tanstack-query/devtools'
 
 import appCss from '../styles/globals.css?url'
 
+import { Toaster } from '@/components/Toast/Toaster'
 import { PolarPostHogProvider } from '@/providers/posthog'
 import { PolarThemeProvider } from '@/providers/theme'
 import { CONFIG } from '@/utils/config'
@@ -110,6 +111,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
             <div className="dark:bg-polar-950 h-full bg-white dark:text-white">
               {children}
             </div>
+            <Toaster />
           </PolarThemeProvider>
         </PolarPostHogProvider>
         <TanStackDevtools

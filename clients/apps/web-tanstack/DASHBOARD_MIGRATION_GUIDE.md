@@ -15,7 +15,7 @@ The only acceptable changes are those strictly required to translate a Next.js f
 5. **Use production for visual truth and the repository for implementation truth.** A production screenshot can be newer or data-dependent. Resolve differences by checking both.
 6. **Use real data and authentication.** Test against the real local API and database. Do not introduce mock responses for dashboard migrations.
 7. **Preserve security boundaries.** Route guards improve UX, but API permissions remain authoritative.
-8. **Do not generalize prematurely.** It is acceptable to copy an app-local component into `web-tanstack` while the migration is in progress. Extract shared code only after stable patterns emerge.
+8. **Keep both applications standalone.** Existing workspace primitives may be reused, but a migration must not introduce new shared primitives or move app-local code into a shared package. Copy framework-neutral app-local code into `web-tanstack` instead.
 9. **Do not invent CSS overrides.** Preserve `!important` modifiers only when the corresponding production implementation uses them.
 10. **Keep files below the frontend 250-line limit.** If a mechanical split is required, split by responsibility without changing code behavior, rendered structure, or ownership.
 11. **Treat data differences separately from visual differences.** Production and local organizations usually have different plans, avatars, metrics, orders, and balances.
@@ -261,12 +261,24 @@ Create a small dependency table before porting:
 
 | Original dependency                                 | Migration choice                              |
 | --------------------------------------------------- | --------------------------------------------- |
-| Workspace package component                         | Import directly                               |
-| App-local framework-neutral React component         | Copy exactly                                  |
+| Existing workspace package component                | Import directly                               |
+| App-local framework-neutral React component         | Copy exactly into `web-tanstack`              |
 | `next/link` or `next/navigation`                    | Replace only the framework boundary           |
 | Next.js Server Component or Server Action           | Loader, query, or `createServerFn`            |
 | Next.js provider used only for available route data | Pass the same data through route context      |
 | Unrelated feature not required by the task          | Defer explicitly; do not invent a replacement |
+
+#### Do not introduce shared primitives
+
+`clients/apps/web` and `clients/apps/web-tanstack` must remain standalone applications. During a migration:
+
+- Reuse primitives that already exist in workspace packages such as `@polar-sh/orbit` or `@polar-sh/ui`.
+- Do not extract Next.js app-local components, hooks, utilities, or state into a shared package.
+- Do not add new shared primitives intended to serve both applications.
+- Copy portable app-local code into `web-tanstack` and adapt only the framework-specific boundaries there.
+- Do not modify the Next.js implementation solely to facilitate a TanStack migration.
+
+Temporary duplication between the two applications is intentional. It keeps the migration isolated, prevents regressions in the production Next.js application, and allows each application to evolve independently.
 
 #### Install external dependencies only with pnpm
 
@@ -785,7 +797,7 @@ Prefer a vertical slice over porting every shared dependency first:
 4. Loading, empty, denied, and populated states.
 5. Desktop/mobile parity.
 6. One primary interaction.
-7. Shared extraction only after the second page proves reuse.
+7. Keep copied app-local code inside `web-tanstack`; do not extract cross-application primitives as part of migration work.
 
 Good early candidates are pages with:
 
@@ -847,6 +859,9 @@ Defer high-risk flows such as payouts, account setup, product editors, checkout 
 
 ### Dependencies
 
+- [ ] No new shared primitive or cross-application abstraction was introduced.
+- [ ] Existing workspace primitives are reused without moving app-local code into shared packages.
+- [ ] The Next.js application was not modified solely to support the migration.
 - [ ] Every external dependency was added with `pnpm i` from the target package.
 - [ ] `package.json` and `pnpm-lock.yaml` were not manually edited.
 - [ ] `pnpm install --frozen-lockfile` passes from `clients/`.
@@ -870,7 +885,8 @@ A dashboard page is not complete because it renders or because its top-level scr
 - Every production state, interaction, side effect, validation path, analytics event, and error path is preserved.
 - Desktop and mobile geometry are compared against production.
 - Any remaining difference is caused only by real data or a strictly necessary, explicitly documented Next.js-to-TanStack framework boundary.
-- All portable code and component structure remain the same as the original.
+- All portable code and component structure remain the same as the original within the standalone TanStack application.
+- No new primitive or abstraction is shared between the Next.js and TanStack applications as part of the migration.
 - Framework-specific changes are minimal, isolated, and reviewable.
 
 A migration with avoidable functional, structural, behavioral, or visual deviation is not acceptable.

@@ -21,6 +21,7 @@
     "@polar-sh/ui": "workspace:*",
     "@posthog/ai": "^7.16.0",
     "@posthog/core": "^1.25.2",
+    "@radix-ui/react-toast": "^1.2.15",
     "@sentry/react": "^10.49.0",
     "@stylexjs/stylex": "^0.18.2",
     "@tailwindcss/vite": "^4.1.18",
