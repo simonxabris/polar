@@ -3,7 +3,7 @@ import BoltOutlined from '@mui/icons-material/BoltOutlined'
 import ExploreOutlined from '@mui/icons-material/ExploreOutlined'
 import HiveOutlined from '@mui/icons-material/HiveOutlined'
 import PeopleAltOutlined from '@mui/icons-material/PeopleAltOutlined'
-import SettingsOutlined from '@mui/icons-material/SettingsOutlined'
+import TuneOutlined from '@mui/icons-material/TuneOutlined'
 import ShoppingBagOutlined from '@mui/icons-material/ShoppingBagOutlined'
 import SignalCellularAltOutlined from '@mui/icons-material/SignalCellularAltOutlined'
 import SpaceDashboardOutlined from '@mui/icons-material/SpaceDashboardOutlined'
@@ -84,7 +84,7 @@ const billingItems: NavigationItem[] = [
   {
     id: 'settings',
     title: 'Settings',
-    icon: <SettingsOutlined fontSize="inherit" />,
+    icon: <TuneOutlined fontSize="inherit" />,
   },
 ]
 
@@ -158,7 +158,7 @@ const legacyItems: NavigationItem[] = [
   {
     id: 'settings',
     title: 'Settings',
-    icon: <SettingsOutlined fontSize="inherit" />,
+    icon: <TuneOutlined fontSize="inherit" />,
   },
 ]
 

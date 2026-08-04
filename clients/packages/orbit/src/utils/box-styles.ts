@@ -300,6 +300,7 @@ export const colorStyles = stylex.create({
 export const borderColorStyles = stylex.create({
   'border-primary': { borderColor: borderColors['border-primary'] },
   'border-secondary': { borderColor: borderColors['border-secondary'] },
+  'border-card': { borderColor: borderColors['border-card'] },
   'border-warning': { borderColor: borderColors['border-warning'] },
 })
 

@@ -32,6 +32,7 @@ export const TEXT_TOKENS: { token: TextColorToken; note: string }[] = [
 export const BORDER_TOKENS: { token: BorderColorToken; note: string }[] = [
   { token: 'border-primary', note: 'Default borders & dividers' },
   { token: 'border-secondary', note: 'Subtle / secondary dividers' },
+  { token: 'border-card', note: 'Card and panel borders' },
   { token: 'border-warning', note: 'Warning borders' },
 ]
 

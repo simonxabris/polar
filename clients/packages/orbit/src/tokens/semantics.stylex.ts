@@ -47,6 +47,7 @@ export const textColors = stylex.defineVars({
 export const borderColors = stylex.defineVars({
   'border-primary': `light-dark(${palette.gray200}, ${palette.polar700})`,
   'border-secondary': `light-dark(${palette.gray100}, ${palette.polar800})`,
+  'border-card': `light-dark(${palette.gray200}, ${palette.polar800})`,
   'border-warning': `light-dark(${palette.amber300}, ${palette.amber700})`,
 } as const)
 

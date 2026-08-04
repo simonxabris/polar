@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as AuthenticatedRouteImport } from './routes/_authenticated'
 import { Route as LandingRouteImport } from './routes/_landing'
 import { Route as AuthRouteImport } from './routes/auth'
+import { Route as AuthenticatedOnboardingRouteImport } from './routes/_authenticated/onboarding'
 import { Route as LandingIndexRouteImport } from './routes/_landing/index'
 import { Route as LandingBlogRouteImport } from './routes/_landing/blog'
 import { Route as LandingCompanyRouteImport } from './routes/_landing/company'
@@ -25,6 +26,8 @@ import { Route as AuthEmailOtpRouteImport } from './routes/auth/email-otp'
 import { Route as AuthTotpRouteImport } from './routes/auth/totp'
 import { Route as AuthenticatedDashboardIndexRouteImport } from './routes/_authenticated/dashboard/index'
 import { Route as AuthenticatedDashboardOrganizationRouteImport } from './routes/_authenticated/dashboard/$organization'
+import { Route as AuthenticatedOnboardingProductRouteImport } from './routes/_authenticated/onboarding/product'
+import { Route as AuthenticatedOnboardingValidateDescriptionRouteImport } from './routes/_authenticated/onboarding/validate-description'
 import { Route as LandingBlogIndexRouteImport } from './routes/_landing/blog/index'
 import { Route as LandingBlogIntroducingPolarPlansRouteImport } from './routes/_landing/blog/introducing-polar-plans'
 import { Route as LandingBlogMitchellHashimotoJoinsPolarAsAnAdvisorRouteImport } from './routes/_landing/blog/mitchell-hashimoto-joins-polar-as-an-advisor'
@@ -71,6 +74,11 @@ const AuthRoute = AuthRouteImport.update({
   id: '/auth',
   path: '/auth',
   getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedOnboardingRoute = AuthenticatedOnboardingRouteImport.update({
+  id: '/onboarding',
+  path: '/onboarding',
+  getParentRoute: () => AuthenticatedRoute,
 } as any)
 const LandingIndexRoute = LandingIndexRouteImport.update({
   id: '/',
@@ -138,6 +146,18 @@ const AuthenticatedDashboardOrganizationRoute =
     id: '/dashboard/$organization',
     path: '/dashboard/$organization',
     getParentRoute: () => AuthenticatedRoute,
+  } as any)
+const AuthenticatedOnboardingProductRoute =
+  AuthenticatedOnboardingProductRouteImport.update({
+    id: '/product',
+    path: '/product',
+    getParentRoute: () => AuthenticatedOnboardingRoute,
+  } as any)
+const AuthenticatedOnboardingValidateDescriptionRoute =
+  AuthenticatedOnboardingValidateDescriptionRouteImport.update({
+    id: '/validate-description',
+    path: '/validate-description',
+    getParentRoute: () => AuthenticatedOnboardingRoute,
   } as any)
 const LandingBlogIndexRoute = LandingBlogIndexRouteImport.update({
   id: '/',
@@ -331,6 +351,7 @@ const LandingResourcesComparisonStripeRoute =
 export interface FileRoutesByFullPath {
   '/': typeof LandingIndexRoute
   '/auth': typeof AuthRouteWithChildren
+  '/onboarding': typeof AuthenticatedOnboardingRouteWithChildren
   '/blog': typeof LandingBlogRouteWithChildren
   '/company': typeof LandingCompanyRoute
   '/downloads': typeof LandingDownloadsRoute
@@ -342,6 +363,8 @@ export interface FileRoutesByFullPath {
   '/auth/totp': typeof AuthTotpRoute
   '/auth/': typeof AuthIndexRoute
   '/dashboard/$organization': typeof AuthenticatedDashboardOrganizationRouteWithChildren
+  '/onboarding/product': typeof AuthenticatedOnboardingProductRoute
+  '/onboarding/validate-description': typeof AuthenticatedOnboardingValidateDescriptionRoute
   '/blog/introducing-polar-plans': typeof LandingBlogIntroducingPolarPlansRoute
   '/blog/mitchell-hashimoto-joins-polar-as-an-advisor': typeof LandingBlogMitchellHashimotoJoinsPolarAsAnAdvisorRoute
   '/blog/orbit-llm-safe-design-system': typeof LandingBlogOrbitLlmSafeDesignSystemRoute
@@ -379,6 +402,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof LandingIndexRoute
+  '/onboarding': typeof AuthenticatedOnboardingRouteWithChildren
   '/company': typeof LandingCompanyRoute
   '/downloads': typeof LandingDownloadsRoute
   '/startup-program': typeof LandingStartupProgramRoute
@@ -387,6 +411,8 @@ export interface FileRoutesByTo {
   '/auth/email-otp': typeof AuthEmailOtpRoute
   '/auth/totp': typeof AuthTotpRoute
   '/auth': typeof AuthIndexRoute
+  '/onboarding/product': typeof AuthenticatedOnboardingProductRoute
+  '/onboarding/validate-description': typeof AuthenticatedOnboardingValidateDescriptionRoute
   '/blog/introducing-polar-plans': typeof LandingBlogIntroducingPolarPlansRoute
   '/blog/mitchell-hashimoto-joins-polar-as-an-advisor': typeof LandingBlogMitchellHashimotoJoinsPolarAsAnAdvisorRoute
   '/blog/orbit-llm-safe-design-system': typeof LandingBlogOrbitLlmSafeDesignSystemRoute
@@ -427,6 +453,7 @@ export interface FileRoutesById {
   '/_authenticated': typeof AuthenticatedRouteWithChildren
   '/_landing': typeof LandingRouteWithChildren
   '/auth': typeof AuthRouteWithChildren
+  '/_authenticated/onboarding': typeof AuthenticatedOnboardingRouteWithChildren
   '/_landing/blog': typeof LandingBlogRouteWithChildren
   '/_landing/company': typeof LandingCompanyRoute
   '/_landing/downloads': typeof LandingDownloadsRoute
@@ -439,6 +466,8 @@ export interface FileRoutesById {
   '/_landing/': typeof LandingIndexRoute
   '/auth/': typeof AuthIndexRoute
   '/_authenticated/dashboard/$organization': typeof AuthenticatedDashboardOrganizationRouteWithChildren
+  '/_authenticated/onboarding/product': typeof AuthenticatedOnboardingProductRoute
+  '/_authenticated/onboarding/validate-description': typeof AuthenticatedOnboardingValidateDescriptionRoute
   '/_landing/blog/introducing-polar-plans': typeof LandingBlogIntroducingPolarPlansRoute
   '/_landing/blog/mitchell-hashimoto-joins-polar-as-an-advisor': typeof LandingBlogMitchellHashimotoJoinsPolarAsAnAdvisorRoute
   '/_landing/blog/orbit-llm-safe-design-system': typeof LandingBlogOrbitLlmSafeDesignSystemRoute
@@ -479,6 +508,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/auth'
+    | '/onboarding'
     | '/blog'
     | '/company'
     | '/downloads'
@@ -490,6 +520,8 @@ export interface FileRouteTypes {
     | '/auth/totp'
     | '/auth/'
     | '/dashboard/$organization'
+    | '/onboarding/product'
+    | '/onboarding/validate-description'
     | '/blog/introducing-polar-plans'
     | '/blog/mitchell-hashimoto-joins-polar-as-an-advisor'
     | '/blog/orbit-llm-safe-design-system'
@@ -527,6 +559,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/onboarding'
     | '/company'
     | '/downloads'
     | '/startup-program'
@@ -535,6 +568,8 @@ export interface FileRouteTypes {
     | '/auth/email-otp'
     | '/auth/totp'
     | '/auth'
+    | '/onboarding/product'
+    | '/onboarding/validate-description'
     | '/blog/introducing-polar-plans'
     | '/blog/mitchell-hashimoto-joins-polar-as-an-advisor'
     | '/blog/orbit-llm-safe-design-system'
@@ -574,6 +609,7 @@ export interface FileRouteTypes {
     | '/_authenticated'
     | '/_landing'
     | '/auth'
+    | '/_authenticated/onboarding'
     | '/_landing/blog'
     | '/_landing/company'
     | '/_landing/downloads'
@@ -586,6 +622,8 @@ export interface FileRouteTypes {
     | '/_landing/'
     | '/auth/'
     | '/_authenticated/dashboard/$organization'
+    | '/_authenticated/onboarding/product'
+    | '/_authenticated/onboarding/validate-description'
     | '/_landing/blog/introducing-polar-plans'
     | '/_landing/blog/mitchell-hashimoto-joins-polar-as-an-advisor'
     | '/_landing/blog/orbit-llm-safe-design-system'
@@ -651,6 +689,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/auth'
       preLoaderRoute: typeof AuthRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/onboarding': {
+      id: '/_authenticated/onboarding'
+      path: '/onboarding'
+      fullPath: '/onboarding'
+      preLoaderRoute: typeof AuthenticatedOnboardingRouteImport
+      parentRoute: typeof AuthenticatedRoute
     }
     '/_landing/': {
       id: '/_landing/'
@@ -742,6 +787,20 @@ declare module '@tanstack/react-router' {
       fullPath: '/dashboard/$organization'
       preLoaderRoute: typeof AuthenticatedDashboardOrganizationRouteImport
       parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/onboarding/product': {
+      id: '/_authenticated/onboarding/product'
+      path: '/product'
+      fullPath: '/onboarding/product'
+      preLoaderRoute: typeof AuthenticatedOnboardingProductRouteImport
+      parentRoute: typeof AuthenticatedOnboardingRoute
+    }
+    '/_authenticated/onboarding/validate-description': {
+      id: '/_authenticated/onboarding/validate-description'
+      path: '/validate-description'
+      fullPath: '/onboarding/validate-description'
+      preLoaderRoute: typeof AuthenticatedOnboardingValidateDescriptionRouteImport
+      parentRoute: typeof AuthenticatedOnboardingRoute
     }
     '/_landing/blog/': {
       id: '/_landing/blog/'
@@ -977,6 +1036,23 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface AuthenticatedOnboardingRouteChildren {
+  AuthenticatedOnboardingProductRoute: typeof AuthenticatedOnboardingProductRoute
+  AuthenticatedOnboardingValidateDescriptionRoute: typeof AuthenticatedOnboardingValidateDescriptionRoute
+}
+
+const AuthenticatedOnboardingRouteChildren: AuthenticatedOnboardingRouteChildren =
+  {
+    AuthenticatedOnboardingProductRoute: AuthenticatedOnboardingProductRoute,
+    AuthenticatedOnboardingValidateDescriptionRoute:
+      AuthenticatedOnboardingValidateDescriptionRoute,
+  }
+
+const AuthenticatedOnboardingRouteWithChildren =
+  AuthenticatedOnboardingRoute._addFileChildren(
+    AuthenticatedOnboardingRouteChildren,
+  )
+
 interface AuthenticatedDashboardOrganizationRouteChildren {
   AuthenticatedDashboardOrganizationIndexRoute: typeof AuthenticatedDashboardOrganizationIndexRoute
 }
@@ -993,11 +1069,13 @@ const AuthenticatedDashboardOrganizationRouteWithChildren =
   )
 
 interface AuthenticatedRouteChildren {
+  AuthenticatedOnboardingRoute: typeof AuthenticatedOnboardingRouteWithChildren
   AuthenticatedDashboardOrganizationRoute: typeof AuthenticatedDashboardOrganizationRouteWithChildren
   AuthenticatedDashboardIndexRoute: typeof AuthenticatedDashboardIndexRoute
 }
 
 const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
+  AuthenticatedOnboardingRoute: AuthenticatedOnboardingRouteWithChildren,
   AuthenticatedDashboardOrganizationRoute:
     AuthenticatedDashboardOrganizationRouteWithChildren,
   AuthenticatedDashboardIndexRoute: AuthenticatedDashboardIndexRoute,

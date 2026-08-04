@@ -106,7 +106,11 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       </head>
       <body>
         <PolarPostHogProvider>
-          <PolarThemeProvider>{children}</PolarThemeProvider>
+          <PolarThemeProvider>
+            <div className="dark:bg-polar-950 h-full bg-white dark:text-white">
+              {children}
+            </div>
+          </PolarThemeProvider>
         </PolarPostHogProvider>
         <TanStackDevtools
           config={{

@@ -1,3 +1,4 @@
+import { SupportButton } from '@/components/Feedback/SupportButton'
 import { PolarLogotype } from '@/components/Layout/Public/PolarLogotype'
 import Link from '@/components/Link'
 import { api } from '@/utils/client'
@@ -6,7 +7,6 @@ import ArrowOutwardOutlined from '@mui/icons-material/ArrowOutwardOutlined'
 import BoltOutlined from '@mui/icons-material/BoltOutlined'
 import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown'
 import LockOutlined from '@mui/icons-material/LockOutlined'
-import SupportAgentOutlined from '@mui/icons-material/SupportAgentOutlined'
 import SearchOutlined from '@mui/icons-material/SearchOutlined'
 import { unwrap, type schemas } from '@polar-sh/client'
 import { Avatar, Button, Text } from '@polar-sh/orbit'
@@ -65,7 +65,7 @@ export const DashboardSidebar = ({
     <Sidebar variant="inset" collapsible="icon">
       <SidebarHeader className="flex-row items-center justify-between pt-3.5">
         <PolarLogotype size={32} href={`/dashboard/${organization.slug}`} />
-        <Box alignItems="center" columnGap="xs">
+        <Box alignItems="center" columnGap="s">
           <Button
             type="button"
             size="icon"
@@ -103,26 +103,15 @@ export const DashboardSidebar = ({
             <span className="text-sm text-indigo-500">Upgrade</span>
           </div>
         )}
-        <SidebarMenu>
-          <SidebarMenuItem>
-            <SidebarMenuButton type="button" tooltip="Support">
-              <SupportAgentOutlined fontSize="small" />
-              <Text as="span" variant="default" color="inherit">
-                Support
-              </Text>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
-        </SidebarMenu>
+        <SupportButton organization={organization} />
         <Link
+          className="dark:text-polar-500 dark:hover:text-polar-200 flex flex-row items-center rounded-lg border border-transparent text-sm text-gray-500 transition-colors hover:text-black dark:border-transparent"
           href="https://polar.sh/docs"
           target="_blank"
           rel="noopener noreferrer"
-          className="dark:text-polar-500 flex items-center rounded-lg px-2 py-2 text-sm font-medium text-gray-500 transition-colors hover:text-black dark:hover:text-white"
         >
-          <ArrowOutwardOutlined fontSize="inherit" />
-          <Box as="span" marginLeft="l">
-            Documentation
-          </Box>
+          <ArrowOutwardOutlined className="ml-2" fontSize="inherit" />
+          <span className="ml-4 font-medium">Documentation</span>
         </Link>
         <Separator />
         <SidebarMenu>
